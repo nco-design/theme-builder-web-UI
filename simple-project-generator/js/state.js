@@ -1,5 +1,6 @@
 window.SimpleProjectGenerator = {
   palettes: [],
   font: null,
-  background: null
+  background: null,
+  navigationIcons: {}
 };

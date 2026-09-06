@@ -124,6 +124,91 @@
   margin-top: 16px;
 }
 
+.navigation-icons-field {
+  margin-top: 28px;
+}
+
+.navigation-icons-field h3 {
+  margin-bottom: 0;
+}
+
+.navigation-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.navigation-icon-card {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #5c5c5c;
+  border-radius: 8px;
+  background: #252525;
+}
+
+.navigation-icon-card h4 {
+  margin: 0;
+  text-align: center;
+}
+
+.navigation-icon-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 132px;
+  padding: 16px;
+  border-radius: 6px;
+  background: #181818;
+}
+
+.navigation-icon-preview img {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.navigation-icon-card input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.navigation-icon-button {
+  padding: 8px 12px;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  background: #444444;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.navigation-icon-card input:focus-visible + .navigation-icon-button {
+  outline: 2px solid #8ab4f8;
+  outline-offset: 2px;
+}
+
+.navigation-icon-status {
+  min-height: 2.4em;
+  margin: 0;
+  color: #c8c8c8;
+  font-size: 13px;
+  text-align: center;
+}
+
+.navigation-icon-status.import-success {
+  color: #7bce8d;
+}
+
+.navigation-icon-status.import-error {
+  color: #ef8585;
+}
+
 .form-fields textarea {
   resize: vertical;
 }
