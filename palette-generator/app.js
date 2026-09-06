@@ -175,6 +175,15 @@ function initializeColorPicker(picker) {
 
 document.querySelectorAll("[data-color-picker]").forEach(initializeColorPicker);
 
+const previews = document.querySelector(".previews-grid");
+
+document.querySelectorAll("[data-preview-toggle]").forEach((toggle) => {
+  toggle.addEventListener("change", () => {
+    const target = toggle.dataset.previewToggle;
+    previews.classList.toggle(`show-preview-${target}`, toggle.checked);
+  });
+});
+
 function createPaletteSlug(name) {
   return name
     .trim()
