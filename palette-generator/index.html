@@ -150,6 +150,12 @@
             <span class="toggle-track" aria-hidden="true"></span>
           </label>
 
+          <label class="modifier-toggle">
+            <span>Widescreen</span>
+            <input type="checkbox" data-preview-toggle="widescreen">
+            <span class="toggle-track" aria-hidden="true"></span>
+          </label>
+
           <div class="background-image-control">
             <label for="preview-background-image">Background image</label>
             <input
@@ -167,13 +173,14 @@
         <h2 id="preview-title">Preview</h2>
 
         <div class="previews-grid">
-          <div class="theme-preview" aria-label="640 by 480 main menu preview">
+          <div class="theme-preview" aria-label="Main menu preview">
             <div class="preview-header">
               <span class="status-icon wifi-icon" role="img" aria-label="Wi-Fi"></span>
               <span class="status-icon battery-icon" role="img" aria-label="Battery"></span>
             </div>
 
             <div class="preview-menu">
+              <span class="menu-icon recents-icon" role="img" aria-label="Recent games"></span>
               <span class="menu-icon favorites-icon" role="img" aria-label="Favorites"></span>
               <span class="menu-icon games-icon" role="img" aria-label="Games"></span>
               <span class="menu-icon apps-icon" role="img" aria-label="Apps"></span>
@@ -183,7 +190,7 @@
             <div class="preview-footer"></div>
           </div>
 
-          <div class="theme-preview" aria-label="640 by 480 game list preview">
+          <div class="theme-preview" aria-label="Game list preview">
             <div class="preview-header">
               <span class="status-icon wifi-icon" role="img" aria-label="Wi-Fi"></span>
               <span class="status-icon battery-icon" role="img" aria-label="Battery"></span>

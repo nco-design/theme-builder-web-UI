@@ -261,6 +261,11 @@
   border: 1px solid #505050;
 }
 
+.previews-grid.show-preview-widescreen .theme-preview {
+  aspect-ratio: 16 / 9;
+  grid-template-rows: 36px 1fr 42px;
+}
+
 .preview-header,
 .preview-footer {
   background: transparent;
@@ -323,6 +328,7 @@
   display: block;
   width: 96px;
   height: 96px;
+  transform: scale(0.9);
   background: var(--preview-secondary);
   mask-position: center;
   mask-repeat: no-repeat;
@@ -330,6 +336,21 @@
   -webkit-mask-position: center;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-size: contain;
+}
+
+.recents-icon {
+  display: none;
+  mask-image: url("assets/icons/recents.svg");
+  -webkit-mask-image: url("assets/icons/recents.svg");
+}
+
+.previews-grid.show-preview-widescreen .recents-icon {
+  display: block;
+}
+
+.previews-grid.show-preview-widescreen .menu-icon {
+  width: 72px;
+  height: 72px;
 }
 
 .favorites-icon {
@@ -356,15 +377,18 @@
 .game-list-content {
   display: grid;
   min-height: 0;
+  overflow: hidden;
   grid-template-columns: 2fr 1fr;
+  --list-content-height: 84%;
 }
 
 .game-list {
   display: grid;
   min-width: 0;
-  grid-template-rows: repeat(6, 1fr);
+  min-height: 0;
+  grid-template-rows: repeat(6, 14%);
+  align-content: center;
   align-items: stretch;
-  padding: 10px 0;
 }
 
 .game-list-item {
@@ -372,7 +396,19 @@
   align-items: center;
   padding: 0 20px;
   color: var(--preview-secondary);
-  font-size: 22px;
+  font-size: 20px;
+}
+
+.previews-grid.show-preview-widescreen .game-list {
+  grid-template-rows: repeat(6, 13.5%);
+}
+
+.previews-grid.show-preview-widescreen .game-list-content {
+  --list-content-height: 81%;
+}
+
+.previews-grid.show-preview-widescreen .game-list-item {
+  font-size: 18px;
 }
 
 .game-list-item.selected {
@@ -383,8 +419,10 @@
 .game-jacket {
   display: flex;
   align-items: center;
+  align-self: center;
   justify-content: center;
   min-width: 0;
+  height: var(--list-content-height);
   padding: 16px;
 }
 
