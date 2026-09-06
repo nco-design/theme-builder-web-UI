@@ -158,7 +158,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  min-width: 0;
   min-height: 132px;
+  overflow: hidden;
   padding: 16px;
   border-radius: 6px;
   background: #181818;
@@ -168,6 +171,7 @@
   display: block;
   width: 96px;
   height: 96px;
+  max-width: 100%;
   object-fit: contain;
 }
 
@@ -198,6 +202,7 @@
   margin: 0;
   color: #c8c8c8;
   font-size: 13px;
+  overflow-wrap: anywhere;
   text-align: center;
 }
 
