@@ -12,6 +12,8 @@
     <script src="js/font-import.js" defer></script>
     <script src="js/background-import.js" defer></script>
     <script src="js/icon-import.js" defer></script>
+    <script src="js/zip-builder.js" defer></script>
+    <script src="js/project-generator.js" defer></script>
     <script src="app.js" defer></script>
     <script src="../shared/tool-version.js" defer></script>
   </head>
@@ -120,7 +122,8 @@
         <section class="form-section" aria-labelledby="generate-title">
           <h2 id="generate-title">Generate</h2>
           <p>Review your options and download the completed project folder.</p>
-          <button type="submit" disabled>Download project</button>
+          <button type="submit" data-generate-project>Download project</button>
+          <p class="generation-status" data-generation-status aria-live="polite"></p>
         </section>
       </form>
     </main>
