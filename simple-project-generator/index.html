@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="../shared/styles.css">
     <link rel="stylesheet" href="styles.css">
     <script src="../tools-data.js" defer></script>
+    <script src="js/state.js" defer></script>
+    <script src="js/palette-import.js" defer></script>
+    <script src="js/font-import.js" defer></script>
+    <script src="app.js" defer></script>
     <script src="../shared/tool-version.js" defer></script>
   </head>
   <body data-tool-id="simple-project-generator">
@@ -44,11 +48,39 @@
         <section class="form-section" aria-labelledby="palettes-title">
           <h2 id="palettes-title">Palettes</h2>
           <p>Import one or several palettes created with the <a href="../palette-generator/index.html">Palette Generator</a>.</p>
+
+          <label class="file-field">
+            <span>Palette files</span>
+            <input
+              type="file"
+              accept="application/json,.json"
+              multiple
+              data-palette-files
+            >
+          </label>
+
+          <p class="field-help">JSON files only. Existing additional properties will be preserved.</p>
+          <ul class="import-list" data-palette-list aria-live="polite"></ul>
         </section>
 
         <section class="form-section" aria-labelledby="assets-title">
           <h2 id="assets-title">Assets</h2>
           <p>Add an optional font, background image and navigation icons.</p>
+
+          <div class="asset-fields">
+            <label class="file-field">
+              <span>Font</span>
+              <input
+                type="file"
+                accept=".ttf,.otf,font/ttf,font/otf"
+                data-font-file
+              >
+            </label>
+            <p class="field-help">Optional. TTF and OTF files only.</p>
+            <p class="import-status" data-font-status aria-live="polite">
+              The default font will be used.
+            </p>
+          </div>
         </section>
 
         <section class="form-section" aria-labelledby="layout-title">

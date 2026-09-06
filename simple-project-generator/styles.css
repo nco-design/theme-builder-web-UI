@@ -44,6 +44,82 @@
   font: inherit;
 }
 
+.file-field {
+  display: grid;
+  width: min(100%, 520px);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.file-field input {
+  width: 100%;
+  color: #f5f5f5;
+  font: inherit;
+}
+
+.file-field input::file-selector-button {
+  margin-right: 10px;
+  padding: 8px 12px;
+  color: #f5f5f5;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  background: #444444;
+  cursor: pointer;
+}
+
+.field-help,
+.import-status {
+  color: #c8c8c8;
+  font-size: 14px;
+}
+
+.import-list {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.import-list li,
+.import-status {
+  padding: 10px 12px;
+  border-radius: 4px;
+  background: #252525;
+}
+
+.import-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.import-list button {
+  flex: 0 0 auto;
+  padding: 6px 10px;
+  color: #f5f5f5;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  background: #444444;
+  font: inherit;
+  cursor: pointer;
+}
+
+.import-list .import-success,
+.import-status.import-success {
+  border-left: 4px solid #55b86a;
+}
+
+.import-list .import-error,
+.import-status.import-error {
+  border-left: 4px solid #d86464;
+}
+
+.asset-fields {
+  margin-top: 16px;
+}
+
 .form-fields textarea {
   resize: vertical;
 }
