@@ -184,6 +184,54 @@ document.querySelectorAll("[data-preview-toggle]").forEach((toggle) => {
   });
 });
 
+const backgroundImageInput = document.querySelector("[data-background-image]");
+const removeBackgroundButton = document.querySelector("[data-remove-background]");
+let backgroundImageUrl = null;
+
+function removeBackgroundImage() {
+  document.querySelectorAll(".theme-preview").forEach((preview) => {
+    preview.style.removeProperty("background-image");
+  });
+
+  if (backgroundImageUrl) {
+    URL.revokeObjectURL(backgroundImageUrl);
+    backgroundImageUrl = null;
+  }
+
+  backgroundImageInput.value = "";
+  removeBackgroundButton.disabled = true;
+}
+
+backgroundImageInput.addEventListener("change", () => {
+  const [image] = backgroundImageInput.files;
+
+  if (!image) {
+    return;
+  }
+
+  if (!(["image/jpeg", "image/png"].includes(image.type))) {
+    backgroundImageInput.value = "";
+    return;
+  }
+
+  if (backgroundImageUrl) {
+    URL.revokeObjectURL(backgroundImageUrl);
+  }
+
+  backgroundImageUrl = URL.createObjectURL(image);
+  document.querySelectorAll(".theme-preview").forEach((preview) => {
+    preview.style.backgroundImage = `url("${backgroundImageUrl}")`;
+  });
+  removeBackgroundButton.disabled = false;
+});
+
+removeBackgroundButton.addEventListener("click", removeBackgroundImage);
+window.addEventListener("beforeunload", () => {
+  if (backgroundImageUrl) {
+    URL.revokeObjectURL(backgroundImageUrl);
+  }
+});
+
 function createPaletteSlug(name) {
   return name
     .trim()
