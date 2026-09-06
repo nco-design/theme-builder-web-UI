@@ -10,6 +10,7 @@
     <script src="js/state.js" defer></script>
     <script src="js/palette-import.js" defer></script>
     <script src="js/font-import.js" defer></script>
+    <script src="js/background-import.js" defer></script>
     <script src="app.js" defer></script>
     <script src="../shared/tool-version.js" defer></script>
   </head>
@@ -79,6 +80,19 @@
             <p class="field-help">Optional. TTF and OTF files only.</p>
             <p class="import-status" data-font-status aria-live="polite">
               The default font will be used.
+            </p>
+
+            <label class="file-field">
+              <span>Background image</span>
+              <input
+                type="file"
+                accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                data-background-file
+              >
+            </label>
+            <p class="field-help">Optional. PNG or JPEG, maximum 10 MB and at least 640 × 480 px. Large images will trigger a warning.</p>
+            <p class="import-status" data-background-status aria-live="polite">
+              The default background will be used.
             </p>
           </div>
         </section>

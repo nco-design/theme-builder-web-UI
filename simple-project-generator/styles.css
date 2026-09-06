@@ -116,6 +116,10 @@
   border-left: 4px solid #d86464;
 }
 
+.import-status.import-warning {
+  border-left: 4px solid #d9a441;
+}
+
 .asset-fields {
   margin-top: 16px;
 }
