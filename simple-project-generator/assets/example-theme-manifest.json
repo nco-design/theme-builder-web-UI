@@ -1,7 +1,6 @@
 [
   "assets/LICENSE",
   "assets/README.md",
-  "assets/Roboto-Regular-patched.ttf",
   "assets/backgrounds/background-flat.svg",
   "assets/backgrounds/bg-empty.svg",
   "assets/backgrounds/bg-footer.svg",
@@ -108,4 +107,3 @@
   "palettes/snowy-peak.json",
   "source-palette.json"
 ]
-
