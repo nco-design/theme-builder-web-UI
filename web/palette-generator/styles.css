@@ -1,0 +1,348 @@
+.color-pickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.color-picker {
+  flex: 1 1 320px;
+  width: 100%;
+  max-width: 360px;
+  padding: 16px;
+  color: #f5f5f5;
+  border: 1px solid #5c5c5c;
+  border-radius: 8px;
+  background: #303030;
+  --picker-hue: 0;
+  --picker-saturation: 0%;
+  --picker-lightness: 89.8%;
+  --picker-color: hsl(
+    var(--picker-hue) var(--picker-saturation) var(--picker-lightness)
+  );
+}
+
+.color-picker-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.color-picker-heading h3 {
+  margin: 0 auto 0 0;
+  font-size: 18px;
+}
+
+.color-picker-heading [data-hex-value] {
+  width: 82px;
+  padding: 5px 6px;
+  color: #f5f5f5;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  background: #404040;
+  font-family: monospace;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.color-picker-heading [data-hex-value][aria-invalid="true"] {
+  border-color: #b00020;
+  outline: 1px solid #b00020;
+}
+
+.color-picker-heading button {
+  padding: 6px 10px;
+  color: #f5f5f5;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  background: #444444;
+  cursor: pointer;
+}
+
+.color-swatch {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #707070;
+  border-radius: 6px;
+  background: var(--picker-color);
+}
+
+.color-slider {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.color-slider > span {
+  display: flex;
+  justify-content: space-between;
+}
+
+.color-slider input {
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #888888;
+  border-radius: 999px;
+}
+
+.color-slider input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 0 1px #303030;
+}
+
+.color-slider input::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 0 1px #303030;
+}
+
+.hue-slider input {
+  background: linear-gradient(
+    to right,
+    hsl(0 100% 50%),
+    hsl(60 100% 50%),
+    hsl(120 100% 50%),
+    hsl(180 100% 50%),
+    hsl(240 100% 50%),
+    hsl(300 100% 50%),
+    hsl(360 100% 50%)
+  );
+}
+
+.saturation-slider input {
+  background: linear-gradient(
+    to right,
+    hsl(var(--picker-hue) 0% var(--picker-lightness)),
+    hsl(var(--picker-hue) 100% var(--picker-lightness))
+  );
+}
+
+.lightness-slider input {
+  background: linear-gradient(
+    to right,
+    #000000,
+    hsl(var(--picker-hue) var(--picker-saturation) 50%),
+    #ffffff
+  );
+}
+
+.previews-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  --preview-background: #e5e5e5;
+  --preview-primary: #505050;
+  --preview-secondary: #303030;
+}
+
+.theme-preview {
+  display: grid;
+  flex: 1 1 480px;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 4 / 3;
+  grid-template-rows: 48px 1fr 56px;
+  overflow: hidden;
+  background: var(--preview-background);
+  border: 1px solid #505050;
+}
+
+.preview-header,
+.preview-footer {
+  background: transparent;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 4px 12px;
+}
+
+.status-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  background: var(--preview-primary);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+
+.wifi-icon {
+  mask-image: url("assets/icons/wifi.svg");
+  -webkit-mask-image: url("assets/icons/wifi.svg");
+}
+
+.battery-icon {
+  mask-image: url("assets/icons/power.svg");
+  -webkit-mask-image: url("assets/icons/power.svg");
+}
+
+.preview-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 24px 0;
+}
+
+.preview-menu img {
+  width: 96px;
+  height: 96px;
+  filter: brightness(0);
+}
+
+.menu-icon {
+  display: block;
+  width: 96px;
+  height: 96px;
+  background: var(--preview-secondary);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+
+.favorites-icon {
+  mask-image: url("assets/icons/fav.svg");
+  -webkit-mask-image: url("assets/icons/fav.svg");
+}
+
+.games-icon {
+  background: var(--preview-primary);
+  mask-image: url("assets/icons/games.svg");
+  -webkit-mask-image: url("assets/icons/games.svg");
+}
+
+.apps-icon {
+  mask-image: url("assets/icons/apps.svg");
+  -webkit-mask-image: url("assets/icons/apps.svg");
+}
+
+.settings-icon {
+  mask-image: url("assets/icons/settings.svg");
+  -webkit-mask-image: url("assets/icons/settings.svg");
+}
+
+.game-list-content {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: 2fr 1fr;
+}
+
+.game-list {
+  display: grid;
+  min-width: 0;
+  grid-template-rows: repeat(6, 1fr);
+  align-items: stretch;
+}
+
+.game-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  color: var(--preview-secondary);
+  font-size: 22px;
+}
+
+.game-list-item.selected {
+  color: var(--preview-background);
+  background: var(--preview-primary);
+}
+
+.game-jacket {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 16px;
+}
+
+.game-jacket img {
+  display: block;
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.generate-form {
+  display: grid;
+  width: min(100%, 360px);
+  gap: 16px;
+  padding: 16px;
+  color: #f5f5f5;
+  border: 1px solid #5c5c5c;
+  border-radius: 8px;
+  background: #303030;
+}
+
+.generate-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.generate-form input,
+.generate-form textarea {
+  padding: 8px;
+  color: #f5f5f5;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  background: #404040;
+  font: inherit;
+}
+
+.generate-form textarea {
+  resize: vertical;
+}
+
+.generate-form button {
+  width: 100%;
+  padding: 10px 16px;
+  color: #f5f5f5;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  background: #444444;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .preview-menu {
+    padding: 16px 0;
+  }
+
+  .preview-menu img,
+  .preview-menu .menu-icon {
+    width: 20%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .game-list-item {
+    padding: 0 10px;
+    font-size: clamp(12px, 3.2vw, 22px);
+  }
+
+  .game-jacket {
+    padding: 8px;
+  }
+}

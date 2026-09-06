@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Palette Generator</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="../tools-data.js" defer></script>
+    <script src="app.js" defer></script>
+    <script src="../shared/tool-version.js" defer></script>
+  </head>
+  <body data-tool-id="palette-generator">
+    <main class="page-shell">
+      <p><a href="../">Back to all tools</a></p>
+
+      <h1>Palette Generator</h1>
+      <p>
+        Create a color palette, preview it in context and generate a palette
+        configuration ready to use with Spruce Theme Builder.
+      </p>
+
+      <section aria-labelledby="colors-title">
+        <h2 id="colors-title">Colors</h2>
+
+        <div class="color-pickers">
+          <div
+            class="color-picker"
+            data-color-picker
+            data-palette-color="background"
+            data-preview-background
+          >
+            <div class="color-picker-heading">
+              <h3>Background</h3>
+              <span class="color-swatch" data-color-swatch aria-hidden="true"></span>
+              <input
+                data-hex-value
+                type="text"
+                value="#E5E5E5"
+                maxlength="7"
+                aria-label="Background HEX color"
+                spellcheck="false"
+              >
+              <button type="button" data-copy-hex>Copy</button>
+            </div>
+
+            <label class="color-slider hue-slider">
+              <span>Hue <output data-hue-value>0°</output></span>
+              <input data-hue type="range" min="0" max="359" value="0">
+            </label>
+
+            <label class="color-slider saturation-slider">
+              <span>Saturation <output data-saturation-value>0%</output></span>
+              <input data-saturation type="range" min="0" max="100" step="0.1" value="0">
+            </label>
+
+            <label class="color-slider lightness-slider">
+              <span>Lightness <output data-lightness-value>89.8%</output></span>
+              <input data-lightness type="range" min="0" max="100" step="0.1" value="89.8">
+            </label>
+          </div>
+
+          <div
+            class="color-picker"
+            data-color-picker
+            data-palette-color="primary"
+            data-preview-primary
+          >
+            <div class="color-picker-heading">
+              <h3>Primary color</h3>
+              <span class="color-swatch" data-color-swatch aria-hidden="true"></span>
+              <input
+                data-hex-value
+                type="text"
+                value="#505050"
+                maxlength="7"
+                aria-label="Primary HEX color"
+                spellcheck="false"
+              >
+              <button type="button" data-copy-hex>Copy</button>
+            </div>
+
+            <label class="color-slider hue-slider">
+              <span>Hue <output data-hue-value>0°</output></span>
+              <input data-hue type="range" min="0" max="359" value="0">
+            </label>
+
+            <label class="color-slider saturation-slider">
+              <span>Saturation <output data-saturation-value>0%</output></span>
+              <input data-saturation type="range" min="0" max="100" step="0.1" value="0">
+            </label>
+
+            <label class="color-slider lightness-slider">
+              <span>Lightness <output data-lightness-value>31.4%</output></span>
+              <input data-lightness type="range" min="0" max="100" step="0.1" value="31.4">
+            </label>
+          </div>
+
+          <div
+            class="color-picker"
+            data-color-picker
+            data-palette-color="secondary"
+            data-preview-secondary
+          >
+            <div class="color-picker-heading">
+              <h3>Secondary color</h3>
+              <span class="color-swatch" data-color-swatch aria-hidden="true"></span>
+              <input
+                data-hex-value
+                type="text"
+                value="#303030"
+                maxlength="7"
+                aria-label="Secondary HEX color"
+                spellcheck="false"
+              >
+              <button type="button" data-copy-hex>Copy</button>
+            </div>
+
+            <label class="color-slider hue-slider">
+              <span>Hue <output data-hue-value>0°</output></span>
+              <input data-hue type="range" min="0" max="359" value="0">
+            </label>
+
+            <label class="color-slider saturation-slider">
+              <span>Saturation <output data-saturation-value>0%</output></span>
+              <input data-saturation type="range" min="0" max="100" step="0.1" value="0">
+            </label>
+
+            <label class="color-slider lightness-slider">
+              <span>Lightness <output data-lightness-value>18.8%</output></span>
+              <input data-lightness type="range" min="0" max="100" step="0.1" value="18.8">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="preview-title">
+        <h2 id="preview-title">Preview</h2>
+
+        <div class="previews-grid">
+          <div class="theme-preview" aria-label="640 by 480 main menu preview">
+            <div class="preview-header">
+              <span class="status-icon wifi-icon" role="img" aria-label="Wi-Fi"></span>
+              <span class="status-icon battery-icon" role="img" aria-label="Battery"></span>
+            </div>
+
+            <div class="preview-menu">
+              <span class="menu-icon favorites-icon" role="img" aria-label="Favorites"></span>
+              <span class="menu-icon games-icon" role="img" aria-label="Games"></span>
+              <span class="menu-icon apps-icon" role="img" aria-label="Apps"></span>
+              <span class="menu-icon settings-icon" role="img" aria-label="Settings"></span>
+            </div>
+
+            <div class="preview-footer"></div>
+          </div>
+
+          <div class="theme-preview" aria-label="640 by 480 game list preview">
+            <div class="preview-header">
+              <span class="status-icon wifi-icon" role="img" aria-label="Wi-Fi"></span>
+              <span class="status-icon battery-icon" role="img" aria-label="Battery"></span>
+            </div>
+
+            <div class="game-list-content">
+              <div class="game-list">
+                <div class="game-list-item selected">Apotris</div>
+                <div class="game-list-item">Another Game</div>
+                <div class="game-list-item">Fighting Fighter</div>
+                <div class="game-list-item">Platform jumper</div>
+                <div class="game-list-item">Puzzle Quest</div>
+                <div class="game-list-item">RPG Adventure</div>
+              </div>
+
+              <div class="game-jacket">
+                <img
+                  src="https://cdn2.steamgriddb.com/thumb/1f242c5ebb9a4eb819cd46ed4e48d591.jpg"
+                  alt="Apotris game artwork"
+                >
+              </div>
+            </div>
+
+            <div class="preview-footer"></div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="generate-title">
+        <h2 id="generate-title">Generate</h2>
+
+        <form class="generate-form" data-generate-form>
+          <label>
+            <span>Palette name</span>
+            <input name="palette-name" type="text" required>
+          </label>
+
+          <label>
+            <span>Description</span>
+            <textarea name="description" rows="3" required></textarea>
+          </label>
+
+          <label>
+            <span>Author</span>
+            <input name="author" type="text" required>
+          </label>
+
+          <button type="submit">Download palette</button>
+        </form>
+      </section>
+
+    </main>
+
+    <footer class="tool-footer">
+      <div class="tool-footer-content">
+        <a class="tool-footer-item" href="https://github.com/nco-design">Author: Nicolas C</a>
+        <span class="tool-footer-item">Version <span data-tool-version></span></span>
+        <a class="tool-footer-item" href="../../../LICENSE">License</a>
+      </div>
+    </footer>
+  </body>
+</html>
