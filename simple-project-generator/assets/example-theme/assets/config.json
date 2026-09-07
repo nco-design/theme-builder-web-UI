@@ -1,4 +1,5 @@
 {
+    "showBottomBar": true,
     "batteryPercentage": {
         "font": "nunwen.ttf",
         "size": 18
@@ -20,7 +21,7 @@
         "size": 22
     },
     "grid": {
-        "font": "AdobeBlank.ttc",
+        "font": "nunwen.ttc",
         "grid1x4": 25,
         "grid3x4": 18
     },
@@ -41,5 +42,11 @@
     "systemSelectGridResizeType": "FIT",
     "gridBgOffsetToImageOffset": true,
     "gameSystemSelectColCount": 3,
-    "gameSystemSelectRowCount": 1
+    "gameSystemSelectRowCount": 1,
+    "systemSelectGridWrapAroundSingleRow": false,
+    "systemSelectViewType": "GRID",
+    "carouselSystemUsePercentageMode": true,
+    "carouselSystemSelectShrinkFurtherAway": false,
+    "carouselSystemSelectPrimaryImgWidth": 30,
+    "carouselSystemXPad": 20
 }
