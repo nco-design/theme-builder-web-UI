@@ -7,7 +7,7 @@
 .color-picker {
   flex: 1 1 320px;
   width: 100%;
-  max-width: 360px;
+  max-width: 400px;
   padding: 16px;
   color: #f5f5f5;
   border: 1px solid #5c5c5c;
@@ -57,6 +57,32 @@
   border-radius: 4px;
   background: #444444;
   cursor: pointer;
+}
+
+.color-picker-heading .eyedropper-button {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 5px;
+}
+
+.eyedropper-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.eyedropper-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.eyedropper-button.is-active {
+  border-color: #8ab4f8;
+  outline: 2px solid #8ab4f8;
+  outline-offset: 1px;
+  background: #575757;
 }
 
 .color-swatch {
@@ -236,6 +262,56 @@
 .background-image-control button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.image-sampler {
+  flex: 1 1 100%;
+  width: min(100%, 480px);
+  margin-top: 6px;
+}
+
+.image-sampler[hidden] {
+  display: none;
+}
+
+.image-sampler p {
+  margin: 0 0 10px;
+  color: #c8c8c8;
+  font-size: 14px;
+}
+
+.image-sampler-canvas {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  border: 1px solid #777;
+  background: #202020;
+  line-height: 0;
+}
+
+.image-sampler-canvas canvas {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 280px;
+}
+
+.image-sampler-canvas [data-sampler-overlay] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+}
+
+.image-sampler-canvas.is-active [data-sampler-overlay] {
+  cursor: crosshair;
+}
+
+.image-sampler .image-sampler-status {
+  min-height: 1.4em;
+  margin: 8px 0 0;
 }
 
 .previews-grid {

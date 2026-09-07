@@ -27,6 +27,9 @@ window.PaletteGenerator.initializePreviewModifiers = function initializePreviewM
 
     backgroundImageInput.value = "";
     removeBackgroundButton.disabled = true;
+    document.dispatchEvent(new CustomEvent("palette-background-image-change", {
+      detail: { file: null }
+    }));
   }
 
   backgroundImageInput.addEventListener("change", () => {
@@ -46,6 +49,9 @@ window.PaletteGenerator.initializePreviewModifiers = function initializePreviewM
       preview.style.backgroundImage = `url("${backgroundImageUrl}")`;
     });
     removeBackgroundButton.disabled = false;
+    document.dispatchEvent(new CustomEvent("palette-background-image-change", {
+      detail: { file: image }
+    }));
   });
 
   removeBackgroundButton.addEventListener("click", removeBackgroundImage);

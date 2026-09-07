@@ -10,6 +10,7 @@
     <script src="js/color-utils.js" defer></script>
     <script src="js/clipboard.js" defer></script>
     <script src="js/color-picker.js" defer></script>
+    <script src="js/image-color-sampler.js" defer></script>
     <script src="js/preview-modifiers.js" defer></script>
     <script src="js/palette-export.js" defer></script>
     <script src="app.js" defer></script>
@@ -46,6 +47,14 @@
                 aria-label="Background HEX color"
                 spellcheck="false"
               >
+              <button
+                class="eyedropper-button"
+                type="button"
+                data-image-eyedropper
+                aria-label="Pick background color from image"
+                title="Pick color from image"
+                disabled
+              ><img src="assets/icons/color-picker.svg" alt=""></button>
               <button type="button" data-copy-hex>Copy</button>
             </div>
 
@@ -82,6 +91,14 @@
                 aria-label="Primary HEX color"
                 spellcheck="false"
               >
+              <button
+                class="eyedropper-button"
+                type="button"
+                data-image-eyedropper
+                aria-label="Pick primary color from image"
+                title="Pick color from image"
+                disabled
+              ><img src="assets/icons/color-picker.svg" alt=""></button>
               <button type="button" data-copy-hex>Copy</button>
             </div>
 
@@ -118,6 +135,14 @@
                 aria-label="Secondary HEX color"
                 spellcheck="false"
               >
+              <button
+                class="eyedropper-button"
+                type="button"
+                data-image-eyedropper
+                aria-label="Pick secondary color from image"
+                title="Pick color from image"
+                disabled
+              ><img src="assets/icons/color-picker.svg" alt=""></button>
               <button type="button" data-copy-hex>Copy</button>
             </div>
 
@@ -170,6 +195,15 @@
               data-background-image
             >
             <button type="button" data-remove-background disabled>Remove image</button>
+
+            <div class="image-sampler" data-image-sampler hidden>
+              <p>Choose a pipette above, then click a pixel or drag a circular area to sample its average color.</p>
+              <div class="image-sampler-canvas" data-image-sampler-canvas>
+                <canvas data-sampler-image aria-hidden="true"></canvas>
+                <canvas data-sampler-overlay aria-label="Background image color sampler"></canvas>
+              </div>
+              <p class="image-sampler-status" data-image-sampler-status aria-live="polite"></p>
+            </div>
           </div>
         </div>
       </section>
