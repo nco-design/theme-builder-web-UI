@@ -38,9 +38,9 @@
   <rect
      style="opacity:1;fill:#e5e5e5;fill-opacity:0.5;stroke-width:96;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
      id="rect1"
-     width="2760"
-     height="2760"
-     x="60"
-     y="-900"
+     width="2640"
+     height="2640"
+     x="120"
+     y="-840"
      rx="240" />
 </svg>

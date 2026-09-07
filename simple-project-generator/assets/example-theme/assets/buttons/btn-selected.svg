@@ -28,7 +28,7 @@
      inkscape:deskcolor="#505050"
      inkscape:zoom="4.59375"
      inkscape:cx="76.843537"
-     inkscape:cy="88.054422"
+     inkscape:cy="88.272109"
      inkscape:window-width="1920"
      inkscape:window-height="1131"
      inkscape:window-x="0"
@@ -38,9 +38,9 @@
   <rect
      style="opacity:1;fill:#e5e5e5;fill-opacity:1;stroke-width:96;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
      id="rect1"
-     width="2760"
-     height="2760"
-     x="60"
-     y="-900"
+     width="2640"
+     height="2640"
+     x="120"
+     y="-840"
      rx="240" />
 </svg>
