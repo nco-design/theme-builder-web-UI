@@ -494,8 +494,8 @@
 }
 
 .game-list-item.selected {
-  color: var(--preview-background);
-  background: var(--preview-primary);
+  color: var(--preview-primary);
+  background: var(--preview-secondary);
 }
 
 .game-jacket {

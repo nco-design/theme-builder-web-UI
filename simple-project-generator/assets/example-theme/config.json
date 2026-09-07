@@ -14,7 +14,7 @@
         "grid.color": "secondary-color",
         "grid.selectedcolor": "bg-color",
         "list.color": "secondary-color",
-        "list.selectedcolor": "bg-color"
+        "list.selectedcolor": "primary-color"
       }
     }
   }
