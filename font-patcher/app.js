@@ -92,7 +92,7 @@ async function patchFont(file) {
 
   if (sourceGlyphs.length > 0) {
     const sourceData = sourceFont.get();
-    const sourceSubset = window.FontEditorCore.createFont(null, { type: "ttf" });
+    const sourceSubset = window.FontEditorCore.createFont();
     sourceSubset.set({
       ...sourceData,
       glyf: sourceGlyphs.map((glyph) => structuredClone(glyph))
@@ -144,6 +144,7 @@ fontInput.addEventListener("change", async () => {
   try {
     await patchFont(file);
   } catch (error) {
+    console.error("Font patching failed", error);
     resetDownload();
     setStatus(error instanceof Error ? error.message : "The font could not be patched.", "error");
   }
