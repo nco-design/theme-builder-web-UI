@@ -82,7 +82,7 @@
 
 .radius-control {
   display: grid;
-  grid-template-columns: auto minmax(160px, 1fr) 3.5em;
+  grid-template-columns: auto minmax(160px, 1fr) 3.5em 104px;
   align-items: center;
   max-width: 520px;
   gap: 12px;
@@ -97,9 +97,17 @@
   text-align: right;
 }
 
+.radius-preview {
+  display: block;
+  width: 96px;
+  height: 44px;
+  margin: 4px;
+  background: #ffffff;
+}
+
 @media (max-width: 520px) {
   .radius-control {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto 104px;
   }
 
   .radius-control input {

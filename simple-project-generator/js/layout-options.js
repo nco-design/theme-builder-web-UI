@@ -133,7 +133,18 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
 
   const radiusInput = document.querySelector("[data-button-radius]");
   const radiusValue = document.querySelector("[data-button-radius-value]");
-  radiusInput.addEventListener("input", () => {
+  const radiusPreview = document.querySelector("[data-button-radius-preview]");
+
+  function updateRadiusPreview() {
     radiusValue.value = `${radiusInput.value}%`;
-  });
+    const maximumRadius = Math.min(
+      radiusPreview.offsetWidth,
+      radiusPreview.offsetHeight
+    ) / 2;
+    const radius = maximumRadius * Number(radiusInput.value) / 100;
+    radiusPreview.style.borderRadius = `${radius}px`;
+  }
+
+  radiusInput.addEventListener("input", updateRadiusPreview);
+  updateRadiusPreview();
 };
