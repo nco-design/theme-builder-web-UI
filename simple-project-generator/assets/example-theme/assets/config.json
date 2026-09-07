@@ -31,7 +31,7 @@
 
     },
     "recentsEnabled": true,
-    "topBarInitialXOffset": 90,
+    "topBarInitialXOffset": 27,
     "setTopBarTextToGameSelection": true,
     "fullScreenGridGameMenuResizeType": "FIT",
     "mainMenuTitle": "",
@@ -47,6 +47,7 @@
     "systemSelectViewType": "GRID",
     "carouselSystemUsePercentageMode": true,
     "carouselSystemSelectShrinkFurtherAway": false,
-    "carouselSystemSelectPrimaryImgWidth": 30,
-    "carouselSystemXPad": 20
+    "carouselSystemSelectPrimaryImgWidth": 20,
+    "carouselSystemXPad": 13,
+    "singleRowGridTextYOffset": 13
 }
