@@ -4,6 +4,14 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
   const primaryColorSource = "#e5e5e5";
   const backgroundColorSource = "#0d0d26";
 
+  const buttonPaths = new Set([
+    "assets/buttons/btn-selected.svg",
+    "assets/buttons/btn-unselected.svg",
+    "assets/buttons/keyboard-key-selected.svg",
+    "assets/buttons/list-selected.svg",
+    "assets/buttons/text-input.svg"
+  ]);
+
   const headerIconPaths = new Set([
     "assets/icons/charge-0.svg",
     "assets/icons/charge-25.svg",
@@ -62,7 +70,40 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
     return svgContent.replaceAll(primaryColorSource, backgroundColorSource);
   }
 
-  app.createLayoutAsset = async function createLayoutAsset({ path, showFooter, showHeader }) {
+  function applyButtonRadius(svgContent, radiusPercent) {
+    const documentNode = new DOMParser().parseFromString(svgContent, "image/svg+xml");
+    const svg = documentNode.documentElement;
+
+    if (svg.nodeName === "parsererror" || documentNode.querySelector("parsererror")) {
+      throw new Error("Unable to customize a button SVG.");
+    }
+
+    const rectangles = [...documentNode.querySelectorAll("rect")];
+    if (rectangles.length === 0) throw new Error("A button SVG does not contain a rectangle.");
+
+    for (const rectangle of rectangles) {
+      const width = Number.parseFloat(rectangle.getAttribute("width"));
+      const height = Number.parseFloat(rectangle.getAttribute("height"));
+
+      if (!(width > 0) || !(height > 0)) {
+        throw new Error("A button SVG contains a rectangle with invalid dimensions.");
+      }
+
+      const radius = Math.min(width, height) * radiusPercent / 200;
+      const serializedRadius = Number(radius.toFixed(3)).toString();
+      rectangle.setAttribute("rx", serializedRadius);
+      rectangle.setAttribute("ry", serializedRadius);
+    }
+
+    return new XMLSerializer().serializeToString(documentNode);
+  }
+
+  app.createLayoutAsset = async function createLayoutAsset({
+    buttonRadius,
+    path,
+    showFooter,
+    showHeader
+  }) {
     if (path in barPaths) {
       const shouldShow = barPaths[path] === "header" ? showHeader : showFooter;
       if (shouldShow) return addPrimaryBackground(await fetchSvg(path));
@@ -71,6 +112,10 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
 
     if (showHeader && headerIconPaths.has(path)) {
       return useBackgroundColor(await fetchSvg(path));
+    }
+
+    if (buttonPaths.has(path)) {
+      return applyButtonRadius(await fetchSvg(path), buttonRadius);
     }
 
     return null;
@@ -85,4 +130,10 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
     bindings["batteryPercentage.color"] = "bg-color";
     bindings["title.color"] = "bg-color";
   };
+
+  const radiusInput = document.querySelector("[data-button-radius]");
+  const radiusValue = document.querySelector("[data-button-radius-value]");
+  radiusInput.addEventListener("input", () => {
+    radiusValue.value = `${radiusInput.value}%`;
+  });
 };

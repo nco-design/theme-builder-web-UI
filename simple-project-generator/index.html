@@ -150,6 +150,25 @@
               </label>
             </div>
           </fieldset>
+
+          <fieldset class="layout-choice-field">
+            <legend>Button radius</legend>
+            <label class="radius-control">
+              <span>Corner radius</span>
+              <input
+                id="button-radius"
+                type="range"
+                name="button-radius"
+                min="0"
+                max="100"
+                value="10"
+                step="1"
+                data-button-radius
+              >
+              <output for="button-radius" data-button-radius-value>10%</output>
+            </label>
+            <p class="field-help">0% creates square corners; 100% uses the maximum radius.</p>
+          </fieldset>
           
         </section>
 

@@ -26,9 +26,9 @@
      inkscape:pageopacity="0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
-     inkscape:zoom="11.313708"
-     inkscape:cx="25.19068"
-     inkscape:cy="21.080622"
+     inkscape:zoom="12.361855"
+     inkscape:cx="28.879162"
+     inkscape:cy="25.522061"
      inkscape:window-width="1920"
      inkscape:window-height="1131"
      inkscape:window-x="0"
@@ -36,8 +36,12 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="svg1"
      showguides="true" />
-  <path
-     id="rect1-5"
-     style="fill:#e5e5e5;fill-opacity:1;stroke:none;stroke-width:96;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
-     d="M 96 -960 C 42.816053 -960 0 -917.18395 0 -864 L 0 144 C 0 197.18395 42.816053 240 96 240 L 1104 240 C 1157.1839 240 1200 197.18395 1200 144 L 1200 -864 C 1200 -917.18395 1157.1839 -960 1104 -960 L 96 -960 z M 125.76562 -924.5625 L 1074.2344 -924.5625 C 1124.2776 -924.5625 1164.5625 -884.27757 1164.5625 -834.23438 L 1164.5625 114.23438 C 1164.5625 164.27757 1124.2776 204.5625 1074.2344 204.5625 L 125.76562 204.5625 C 75.722427 204.5625 35.4375 164.27757 35.4375 114.23438 L 35.4375 -834.23438 C 35.4375 -884.27757 75.722427 -924.5625 125.76562 -924.5625 z " />
+  <rect
+     style="fill:none;fill-opacity:0.5;stroke:#e5e5e5;stroke-width:62.136;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill;stroke-dashoffset:0"
+     id="rect1"
+     width="1137.865"
+     height="1137.865"
+     x="31.067518"
+     y="-928.9325"
+     rx="120" />
 </svg>

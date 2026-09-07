@@ -80,6 +80,34 @@
   accent-color: #f5f5f5;
 }
 
+.radius-control {
+  display: grid;
+  grid-template-columns: auto minmax(160px, 1fr) 3.5em;
+  align-items: center;
+  max-width: 520px;
+  gap: 12px;
+}
+
+.radius-control input {
+  width: 100%;
+  accent-color: #f5f5f5;
+}
+
+.radius-control output {
+  text-align: right;
+}
+
+@media (max-width: 520px) {
+  .radius-control {
+    grid-template-columns: 1fr auto;
+  }
+
+  .radius-control input {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
 .layout-choices {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

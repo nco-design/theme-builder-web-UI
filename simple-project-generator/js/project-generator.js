@@ -75,6 +75,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     const themeName = createSlug(formData.get("theme-name"));
     const showHeader = formData.get("show-header") === "on";
     const showFooter = formData.get("show-footer") === "on";
+    const buttonRadius = Number(formData.get("button-radius"));
 
     if (!themeName) {
       showStatus("Enter a theme name containing letters or numbers.", "error");
@@ -83,6 +84,11 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
     if (app.palettes.length === 0) {
       showStatus("Import at least one valid palette before generating the project.", "error");
+      return;
+    }
+
+    if (!Number.isFinite(buttonRadius) || buttonRadius < 0 || buttonRadius > 100) {
+      showStatus("Choose a button radius between 0 and 100%.", "error");
       return;
     }
 
@@ -114,7 +120,12 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
       let copied = 0;
       for (const path of copiedPaths) {
-        const layoutAsset = await app.createLayoutAsset({ path, showFooter, showHeader });
+        const layoutAsset = await app.createLayoutAsset({
+          buttonRadius,
+          path,
+          showFooter,
+          showHeader
+        });
         zip.addFile(`${root}${path}`, layoutAsset || await fetchFile(path));
         copied += 1;
         showStatus(`Preparing project files… ${copied}/${copiedPaths.length}`);
