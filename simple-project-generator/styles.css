@@ -273,11 +273,11 @@
   margin-bottom: 0;
 }
 
-.icon-sources {
+.resource-sources {
   margin-top: 12px;
 }
 
-.icon-sources summary {
+.resource-sources summary {
   display: inline-block;
   padding: 8px 12px;
   border: 1px solid #777777;
@@ -288,28 +288,28 @@
   list-style: none;
 }
 
-.icon-sources summary::-webkit-details-marker {
+.resource-sources summary::-webkit-details-marker {
   display: none;
 }
 
-.icon-sources summary:hover {
+.resource-sources summary:hover {
   background: #555555;
 }
 
-.icon-sources summary:focus-visible {
+.resource-sources summary:focus-visible {
   outline: 2px solid #f5f5f5;
   outline-offset: 2px;
 }
 
-.icon-sources summary::after {
+.resource-sources summary::after {
   content: " +";
 }
 
-.icon-sources[open] summary::after {
+.resource-sources[open] summary::after {
   content: " −";
 }
 
-.icon-sources ul {
+.resource-sources ul {
   display: grid;
   gap: 8px;
   width: fit-content;
@@ -320,7 +320,7 @@
   background: #252525;
 }
 
-.icon-sources a {
+.resource-sources a {
   cursor: pointer;
 }
 
