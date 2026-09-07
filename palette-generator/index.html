@@ -26,8 +26,8 @@
         configuration ready to use with Spruce Theme Builder.
       </p>
 
-      <section aria-labelledby="colors-title">
-        <h2 id="colors-title">Colors</h2>
+      <section aria-labelledby="palette-editor-title">
+        <h2 id="palette-editor-title">Palette editor</h2>
 
         <div class="color-pickers">
           <div
@@ -162,6 +162,26 @@
             </label>
           </div>
         </div>
+
+        <div class="background-image-control">
+          <label for="preview-background-image">Reference image</label>
+          <input
+            id="preview-background-image"
+            type="file"
+            accept="image/jpeg,image/png"
+            data-background-image
+          >
+          <button type="button" data-remove-background disabled>Remove image</button>
+
+          <div class="image-sampler" data-image-sampler hidden>
+            <p>Choose a pipette above, then click a pixel or drag a circular area to sample its average color.</p>
+            <div class="image-sampler-canvas" data-image-sampler-canvas>
+              <canvas data-sampler-image aria-hidden="true"></canvas>
+              <canvas data-sampler-overlay aria-label="Reference image color sampler"></canvas>
+            </div>
+            <p class="image-sampler-status" data-image-sampler-status aria-live="polite"></p>
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="modifiers-title">
@@ -185,26 +205,6 @@
             <input type="checkbox" data-preview-toggle="widescreen">
             <span class="toggle-track" aria-hidden="true"></span>
           </label>
-
-          <div class="background-image-control">
-            <label for="preview-background-image">Background image</label>
-            <input
-              id="preview-background-image"
-              type="file"
-              accept="image/jpeg,image/png"
-              data-background-image
-            >
-            <button type="button" data-remove-background disabled>Remove image</button>
-
-            <div class="image-sampler" data-image-sampler hidden>
-              <p>Choose a pipette above, then click a pixel or drag a circular area to sample its average color.</p>
-              <div class="image-sampler-canvas" data-image-sampler-canvas>
-                <canvas data-sampler-image aria-hidden="true"></canvas>
-                <canvas data-sampler-overlay aria-label="Background image color sampler"></canvas>
-              </div>
-              <p class="image-sampler-status" data-image-sampler-status aria-live="polite"></p>
-            </div>
-          </div>
         </div>
       </section>
 
