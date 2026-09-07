@@ -16,7 +16,7 @@
     <script src="js/zip-builder.js" defer></script>
     <script src="js/project-generator.js" defer></script>
     <script src="app.js" defer></script>
-    <script src="../shared/tool-version.js" defer></script>
+    <script src="../shared/version.js" defer></script>
   </head>
   <body data-tool-id="simple-project-generator">
     <main class="page-shell">
@@ -141,13 +141,20 @@
             <legend>Header & footer <span class="experimental-label">(experimental)</span></legend>
             <div class="layout-options">
               <label>
-                <input type="checkbox" name="show-header">
+                <input type="checkbox" name="show-header" data-show-header>
                 <span>Show header</span>
               </label>
               <label>
-                <input type="checkbox" name="show-footer">
+                <input type="checkbox" name="show-footer" data-show-footer>
                 <span>Show footer</span>
               </label>
+            </div>
+            <div class="bars-preview" aria-label="Header and footer preview">
+              <div class="bars-preview-header" data-header-preview>
+                <img src="assets/example-theme/assets/icons/wifi-04.svg" alt="">
+                <img src="assets/example-theme/assets/icons/power-100.svg" alt="">
+              </div>
+              <div class="bars-preview-footer" data-footer-preview></div>
             </div>
           </fieldset>
 
@@ -184,7 +191,7 @@
     <footer class="tool-footer">
       <div class="tool-footer-content">
         <a class="tool-footer-item" href="https://github.com/nco-design">Author: Nicolas C</a>
-        <span class="tool-footer-item">Version <span data-tool-version></span></span>
+        <span class="tool-footer-item">Version <span data-project-version></span></span>
         <a class="tool-footer-item" href="../LICENSE">License</a>
       </div>
     </footer>

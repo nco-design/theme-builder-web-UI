@@ -134,6 +134,10 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
   const radiusInput = document.querySelector("[data-button-radius]");
   const radiusValue = document.querySelector("[data-button-radius-value]");
   const radiusPreview = document.querySelector("[data-button-radius-preview]");
+  const headerToggle = document.querySelector("[data-show-header]");
+  const footerToggle = document.querySelector("[data-show-footer]");
+  const headerPreview = document.querySelector("[data-header-preview]");
+  const footerPreview = document.querySelector("[data-footer-preview]");
 
   function updateRadiusPreview() {
     radiusValue.value = `${radiusInput.value}%`;
@@ -147,4 +151,13 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
 
   radiusInput.addEventListener("input", updateRadiusPreview);
   updateRadiusPreview();
+
+  function updateBarsPreview() {
+    headerPreview.classList.toggle("is-visible", headerToggle.checked);
+    footerPreview.classList.toggle("is-visible", footerToggle.checked);
+  }
+
+  headerToggle.addEventListener("change", updateBarsPreview);
+  footerToggle.addEventListener("change", updateBarsPreview);
+  updateBarsPreview();
 };
