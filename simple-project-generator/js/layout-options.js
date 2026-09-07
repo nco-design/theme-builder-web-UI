@@ -131,6 +131,15 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
     bindings["title.color"] = "bg-color";
   };
 
+  app.applyFooterPaletteBindings = function applyFooterPaletteBindings(themeConfig, showFooter) {
+    const bindings = themeConfig["frontend-configs"]?.spruceos?.["palette-bindings"];
+    if (!bindings) throw new Error("Unable to customize the footer palette bindings.");
+
+    const textColor = showFooter ? "bg-color" : "primary-color";
+    bindings["hint.color"] = textColor;
+    bindings["currentpage.color"] = textColor;
+  };
+
   const radiusInput = document.querySelector("[data-button-radius]");
   const radiusValue = document.querySelector("[data-button-radius-value]");
   const radiusPreview = document.querySelector("[data-button-radius-preview]");

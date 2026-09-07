@@ -136,6 +136,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
       themeConfig.description = formData.get("description").trim();
       themeConfig.Author = formData.get("author").trim();
       app.applyHeaderPaletteBindings(themeConfig, showHeader);
+      app.applyFooterPaletteBindings(themeConfig, showFooter);
       zip.addFile(`${root}config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
 
       for (const { palette } of app.palettes) {
