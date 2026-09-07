@@ -4,6 +4,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
   const generateButton = document.querySelector("[data-generate-project]");
   const status = document.querySelector("[data-generation-status]");
   const templateRoot = "assets/example-theme";
+  const systemSelectViewTypes = new Set(["GRID", "CAROUSEL", "TEXT_AND_IMAGE"]);
 
   function createSlug(name) {
     return name
@@ -99,7 +100,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
         customIconPaths.add(`assets/main-nav-icons/${iconName}-unselected.svg`);
       }
 
-      const skippedPaths = new Set(["config.json"]);
+      const skippedPaths = new Set(["config.json", "assets/config.json"]);
       if (app.background) skippedPaths.add("assets/backgrounds/main-background.svg");
       for (const path of customIconPaths) skippedPaths.add(path);
 
@@ -107,7 +108,6 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
         !path.startsWith("palettes/")
         && !skippedPaths.has(path)
         && !(app.font && /\.(ttf|otf)$/i.test(path))
-        && !(app.font && path === "assets/config.json")
       ));
 
       let copied = 0;
@@ -130,14 +130,20 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
         );
       }
 
+      const systemSelectViewType = formData.get("system-select-view-type");
+      if (!systemSelectViewTypes.has(systemSelectViewType)) {
+        throw new Error("Choose a valid emulator selection layout.");
+      }
+
+      let assetsConfig = await fetchJson("assets/config.json");
+      assetsConfig.systemSelectViewType = systemSelectViewType;
+
       if (app.font) {
-        const assetsConfig = replaceFontReferences(
-          await fetchJson("assets/config.json"),
-          app.font.name
-        );
-        zip.addFile(`${root}assets/config.json`, `${JSON.stringify(assetsConfig, null, 2)}\n`);
+        assetsConfig = replaceFontReferences(assetsConfig, app.font.name);
         zip.addFile(`${root}assets/${app.font.name}`, new Uint8Array(await app.font.arrayBuffer()));
       }
+
+      zip.addFile(`${root}assets/config.json`, `${JSON.stringify(assetsConfig, null, 2)}\n`);
 
       if (app.background) {
         zip.addFile(`${root}assets/backgrounds/main-background.svg`, app.background.svg);
