@@ -55,6 +55,31 @@
   font-weight: 700;
 }
 
+.experimental-label {
+  color: #d9a441;
+  font-size: 0.65em;
+  font-weight: 400;
+}
+
+.layout-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 20px;
+}
+
+.layout-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.layout-options input {
+  margin: 0;
+  accent-color: #f5f5f5;
+}
+
 .layout-choices {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

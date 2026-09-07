@@ -73,6 +73,8 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
     const formData = new FormData(form);
     const themeName = createSlug(formData.get("theme-name"));
+    const showHeader = formData.get("show-header") === "on";
+    const showFooter = formData.get("show-footer") === "on";
 
     if (!themeName) {
       showStatus("Enter a theme name containing letters or numbers.", "error");
@@ -112,7 +114,8 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
       let copied = 0;
       for (const path of copiedPaths) {
-        zip.addFile(`${root}${path}`, await fetchFile(path));
+        const layoutAsset = await app.createLayoutAsset({ path, showFooter, showHeader });
+        zip.addFile(`${root}${path}`, layoutAsset || await fetchFile(path));
         copied += 1;
         showStatus(`Preparing project files… ${copied}/${copiedPaths.length}`);
       }
@@ -121,6 +124,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
       themeConfig["theme-name"] = themeName;
       themeConfig.description = formData.get("description").trim();
       themeConfig.Author = formData.get("author").trim();
+      app.applyHeaderPaletteBindings(themeConfig, showHeader);
       zip.addFile(`${root}config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
 
       for (const { palette } of app.palettes) {

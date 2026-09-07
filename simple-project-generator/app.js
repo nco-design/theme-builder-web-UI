@@ -4,4 +4,5 @@ simpleProjectGenerator.initializePaletteImport();
 simpleProjectGenerator.initializeFontImport();
 simpleProjectGenerator.initializeBackgroundImport();
 simpleProjectGenerator.initializeIconImport();
+simpleProjectGenerator.initializeLayoutOptions();
 simpleProjectGenerator.initializeProjectGenerator();

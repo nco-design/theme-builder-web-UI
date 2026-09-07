@@ -12,6 +12,7 @@
     <script src="js/font-import.js" defer></script>
     <script src="js/background-import.js" defer></script>
     <script src="js/icon-import.js" defer></script>
+    <script src="js/layout-options.js" defer></script>
     <script src="js/zip-builder.js" defer></script>
     <script src="js/project-generator.js" defer></script>
     <script src="app.js" defer></script>
@@ -115,8 +116,22 @@
         </section>
 
         <section class="form-section" aria-labelledby="layout-title">
-          <h2 id="layout-title">Layout</h2>
+          <h2 id="layout-title">Layout <span class="experimental-label">(experimental)</span></h2>
           <p>Configure the header, footer, emulator selection and button radius.</p>
+
+          <fieldset class="layout-choice-field">
+            <legend>Bars</legend>
+            <div class="layout-options">
+              <label>
+                <input type="checkbox" name="show-header">
+                <span>Show header</span>
+              </label>
+              <label>
+                <input type="checkbox" name="show-footer">
+                <span>Show footer</span>
+              </label>
+            </div>
+          </fieldset>
 
           <fieldset class="layout-choice-field">
             <legend>Emulator selection</legend>
