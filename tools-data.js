@@ -10,5 +10,11 @@ window.toolCatalog = [
     name: "Simple Project Generator",
     description: "Create and download a ready-to-edit Spruce Theme Builder project.",
     path: "simple-project-generator/"
+  },
+  {
+    id: "font-patcher",
+    name: "Font Patcher",
+    description: "Add the Unicode glyphs required by the SpruceOS interface to your font.",
+    path: "font-patcher/"
   }
 ];

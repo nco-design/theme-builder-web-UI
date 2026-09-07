@@ -11,6 +11,8 @@ These tools are designed to be used with
 ## Tools
 
 - **Palette Generator** — Create, preview and download ready-to-use color palettes for Spruce Theme Builder.
+- **Simple Project Generator** — Create and download a ready-to-edit Spruce Theme Builder project.
+- **Font Patcher** — Add the Unicode glyphs required by the SpruceOS interface to your font.
 
 Copyright © 2026 nco-design. This project is licensed under the
 [GNU General Public License v3.0 or later](LICENSE).

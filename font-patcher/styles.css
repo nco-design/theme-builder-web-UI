@@ -1,0 +1,93 @@
+.patcher-card {
+  width: min(100%, 560px);
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #5c5c5c;
+  border-radius: 8px;
+  background: #303030;
+}
+
+.patcher-card h2 {
+  margin-top: 0;
+}
+
+.file-field {
+  display: grid;
+  gap: 8px;
+}
+
+.file-field span {
+  font-weight: 700;
+}
+
+.file-field input {
+  width: 100%;
+  color: #f5f5f5;
+  font: inherit;
+}
+
+.file-field input::file-selector-button,
+.download-button {
+  padding: 10px 14px;
+  color: #f5f5f5;
+  border: 1px solid #777;
+  border-radius: 4px;
+  background: #444;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.file-field input::file-selector-button {
+  margin-right: 10px;
+}
+
+.resource-sources {
+  margin-top: 18px;
+}
+
+.resource-sources summary {
+  width: fit-content;
+  padding: 8px 12px;
+  border: 1px solid #777;
+  border-radius: 4px;
+  background: #444;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resource-sources ul {
+  margin-bottom: 0;
+}
+
+.resource-sources li + li {
+  margin-top: 6px;
+}
+
+.patch-status {
+  min-height: 1.4em;
+  color: #c8c8c8;
+}
+
+.patch-status.is-error {
+  color: #ff9b9b;
+}
+
+.patch-status.is-success {
+  color: #9fdaa8;
+}
+
+.download-button {
+  width: 100%;
+}
+
+.download-button:hover:not(:disabled),
+.download-button:focus-visible:not(:disabled),
+.file-field input::file-selector-button:hover {
+  background: #525252;
+}
+
+.download-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
