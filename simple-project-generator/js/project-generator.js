@@ -108,7 +108,11 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
         customIconPaths.add(`assets/main-nav-icons/${iconName}-unselected.svg`);
       }
 
-      const skippedPaths = new Set(["config.json", "assets/config.json"]);
+      const skippedPaths = new Set([
+        "config.json",
+        "assets/config.json",
+        "assets/preview.svg"
+      ]);
       if (app.background) skippedPaths.add("assets/backgrounds/main-background.svg");
       for (const path of customIconPaths) skippedPaths.add(path);
 
@@ -169,6 +173,14 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
         zip.addFile(`${root}assets/main-nav-icons/${iconName}-selected.svg`, icon.selectedSvg);
         zip.addFile(`${root}assets/main-nav-icons/${iconName}-unselected.svg`, icon.unselectedSvg);
       }
+
+      const previewSvg = await app.createProjectPreview({
+        background: app.background,
+        navigationIcons: app.navigationIcons,
+        showFooter,
+        showHeader
+      });
+      zip.addFile(`${root}assets/preview.svg`, previewSvg);
 
       downloadZip(zip.build(), `${themeName}.zip`);
       showStatus(`${themeName}.zip is ready.`, "success");
