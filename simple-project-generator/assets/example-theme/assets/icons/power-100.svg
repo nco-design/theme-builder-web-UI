@@ -27,9 +27,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showguides="true"
-     inkscape:zoom="4.5707588"
-     inkscape:cx="25.378718"
-     inkscape:cy="-16.736827"
+     inkscape:zoom="0.57134485"
+     inkscape:cx="239.78513"
+     inkscape:cy="-170.65"
      inkscape:window-width="1920"
      inkscape:window-height="1131"
      inkscape:window-x="0"
@@ -132,27 +132,6 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       style="fill:#cc0000;fill-opacity:1;stroke-width:0.600001;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
-       id="rect3"
-       width="10"
-       height="10"
-       x="73.243538"
-       y="-10" />
-    <rect
-       style="fill:#ffbf00;fill-opacity:1;stroke-width:0.600001;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
-       id="rect3-7"
-       width="10"
-       height="10"
-       x="84.632889"
-       y="-10" />
-    <rect
-       style="fill:#fefefe;fill-opacity:1;stroke-width:0.600001;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
-       id="rect3-7-2"
-       width="10"
-       height="10"
-       x="96.02224"
-       y="-10" />
     <path
        id="rect2"
        style="fill:#e5e5e5;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke markers fill"
