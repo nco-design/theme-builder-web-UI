@@ -141,8 +141,6 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
       themeConfig.Author = formData.get("author").trim();
       app.applyHeaderPaletteBindings(themeConfig, showHeader);
       app.applyFooterPaletteBindings(themeConfig, showFooter);
-      zip.addFile(`${root}project-config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
-
       for (const { palette } of app.palettes) {
         zip.addFile(
           `${root}palettes/${palette["palette-name"]}.json`,
@@ -155,8 +153,19 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
         throw new Error("Choose a valid emulator selection layout.");
       }
 
+      const spruceConfig = themeConfig["frontend-configs"]?.spruceos;
+      if (!spruceConfig) {
+        throw new Error("Unable to configure SpruceOS project settings.");
+      }
+      spruceConfig["config-overrides"] ??= {};
+      for (const configId of ["base", "720p"]) {
+        spruceConfig["config-overrides"][configId] ??= {};
+        spruceConfig["config-overrides"][configId].systemSelectViewType = systemSelectViewType;
+      }
+
+      zip.addFile(`${root}project-config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
+
       let assetsConfig = await fetchJson("assets/config.json");
-      assetsConfig.systemSelectViewType = systemSelectViewType;
 
       if (app.font) {
         assetsConfig = replaceFontReferences(assetsConfig, app.font.name);
