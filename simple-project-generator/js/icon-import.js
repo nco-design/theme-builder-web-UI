@@ -31,7 +31,7 @@ window.SimpleProjectGenerator.initializeIconImport = function initializeIconImpo
     };
   }
 
-  function validateSvg(svgText) {
+  function parseAndValidateSvg(svgText) {
     const documentNode = new DOMParser().parseFromString(svgText, "image/svg+xml");
 
     if (documentNode.querySelector("parsererror")
@@ -48,11 +48,69 @@ window.SimpleProjectGenerator.initializeIconImport = function initializeIconImpo
     if (Math.abs(width - height) > Math.max(width, height) * 0.001) {
       throw new Error("The SVG must be square.");
     }
+
+    return documentNode;
   }
 
   function replaceColor(svgText, sourceColor, targetColor) {
     const escapedColor = sourceColor.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     return svgText.replace(new RegExp(escapedColor, "gi"), targetColor);
+  }
+
+  function normalizePaintValue(value, primaryColor) {
+    const normalizedValue = value.trim().toLowerCase();
+    return normalizedValue === "none" || normalizedValue.startsWith("url(")
+      ? value
+      : primaryColor;
+  }
+
+  function normalizePaintDeclarations(value, primaryColor) {
+    return value.replace(
+      /\b(fill|stroke|color|stop-color|flood-color|lighting-color)\s*:\s*([^;}]+)/gi,
+      (declaration, property, color) => `${property}: ${normalizePaintValue(color, primaryColor)}`
+    );
+  }
+
+  function normalizeSvgColors(documentNode, primaryColor) {
+    const paintAttributes = [
+      "fill",
+      "stroke",
+      "color",
+      "stop-color",
+      "flood-color",
+      "lighting-color"
+    ];
+
+    const svg = documentNode.documentElement;
+
+    // Keep an explicit fill="none" on outline icons. A missing fill means the
+    // SVG uses the browser's black default, so it can safely become primary.
+    if (!svg.hasAttribute("fill")) svg.setAttribute("fill", primaryColor);
+    if (!svg.hasAttribute("color")) svg.setAttribute("color", primaryColor);
+
+    for (const element of [svg, ...svg.querySelectorAll("*")]) {
+      for (const attribute of paintAttributes) {
+        if (element.hasAttribute(attribute)) {
+          element.setAttribute(
+            attribute,
+            normalizePaintValue(element.getAttribute(attribute), primaryColor)
+          );
+        }
+      }
+
+      if (element.hasAttribute("style")) {
+        element.setAttribute(
+          "style",
+          normalizePaintDeclarations(element.getAttribute("style"), primaryColor)
+        );
+      }
+    }
+
+    for (const styleElement of documentNode.querySelectorAll("style")) {
+      styleElement.textContent = normalizePaintDeclarations(styleElement.textContent, primaryColor);
+    }
+
+    return new XMLSerializer().serializeToString(documentNode);
   }
 
   function updateStatus(status, message, type = null) {
@@ -99,7 +157,7 @@ window.SimpleProjectGenerator.initializeIconImport = function initializeIconImpo
 
       try {
         const svgText = await file.text();
-        validateSvg(svgText);
+        const svgDocument = parseAndValidateSvg(svgText);
         const sourcePalette = await sourcePalettePromise;
         const primaryColor = sourcePalette["primary-color-source"];
         const secondaryColor = sourcePalette["secondary-color-source"];
@@ -108,26 +166,23 @@ window.SimpleProjectGenerator.initializeIconImport = function initializeIconImpo
           throw new Error("The source palette is missing primary or secondary color.");
         }
 
-        const unselectedSvg = replaceColor(svgText, primaryColor, secondaryColor);
-
-        if (unselectedSvg === svgText) {
-          throw new Error(`The SVG must contain the primary source color ${primaryColor}.`);
-        }
+        const selectedSvg = normalizeSvgColors(svgDocument, primaryColor);
+        const unselectedSvg = replaceColor(selectedSvg, primaryColor, secondaryColor);
 
         const previousIcon = app.navigationIcons[icon.id];
         if (previousIcon?.previewUrl) URL.revokeObjectURL(previousIcon.previewUrl);
 
-        const previewUrl = URL.createObjectURL(new Blob([svgText], { type: "image/svg+xml" }));
+        const previewUrl = URL.createObjectURL(new Blob([selectedSvg], { type: "image/svg+xml" }));
         app.navigationIcons[icon.id] = {
           selectedFileName: `${icon.id}-selected.svg`,
-          selectedSvg: svgText,
+          selectedSvg,
           unselectedFileName: `${icon.id}-unselected.svg`,
           unselectedSvg,
           previewUrl
         };
         preview.src = previewUrl;
         input.value = "";
-        updateStatus(status, `${file.name} imported`, "success");
+        updateStatus(status, `${file.name} imported and normalized`, "success");
       } catch (error) {
         input.value = "";
         updateStatus(status, error.message, "error");
