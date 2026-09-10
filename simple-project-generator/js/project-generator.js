@@ -109,7 +109,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
       }
 
       const skippedPaths = new Set([
-        "config.json",
+        "project-config.json",
         "assets/config.json",
         "assets/preview.svg"
       ]);
@@ -135,13 +135,13 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
         showStatus(`Preparing project files… ${copied}/${copiedPaths.length}`);
       }
 
-      const themeConfig = await fetchJson("config.json");
+      const themeConfig = await fetchJson("project-config.json");
       themeConfig["theme-name"] = themeName;
       themeConfig.description = formData.get("description").trim();
       themeConfig.Author = formData.get("author").trim();
       app.applyHeaderPaletteBindings(themeConfig, showHeader);
       app.applyFooterPaletteBindings(themeConfig, showFooter);
-      zip.addFile(`${root}config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
+      zip.addFile(`${root}project-config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
 
       for (const { palette } of app.palettes) {
         zip.addFile(
