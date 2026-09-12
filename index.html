@@ -3,20 +3,57 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Spruce Theme Builder Tools</title>
+    <title>Spruce Theme Builder Web Tools</title>
     <link rel="stylesheet" href="shared/styles.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="tools-data.js" defer></script>
-    <script src="shared/tool-list.js" defer></script>
     <script src="shared/version.js" defer></script>
   </head>
   <body>
-    <main class="page-shell">
-      <h1>Spruce Theme Builder Tools</h1>
-      <p>Choose one of the available tools:</p>
+    <header class="site-header">
+      <div class="site-header-content">
+        <a href="index.html">Spruce Theme Builder</a>
+      </div>
+    </header>
 
-      <div class="tool-list" data-tool-list></div>
+    <main class="page-shell home-page">
+      <h1>Your console, your style</h1>
 
+      <section class="intro-block" aria-labelledby="create-theme-title">
+        <div class="intro-copy">
+          <h2 id="create-theme-title">Build your own theme for your handheld and try it now</h2>
+          <a class="primary-action" href="simple-project-generator/index.html">Create a theme online</a>
+          <p>Pick a background, select your color palette and your theme is ready in a few minutes. This tool is easy to use for both beginners and designers.</p>
+        </div>
+        <img src="shared/assets/preview-multi.png" width="360" height="270" alt="Examples of SpruceOS theme previews">
+      </section>
+
+      <section class="builder-block" aria-labelledby="builder-title">
+        <h2 id="builder-title">Need more control over your theme?</h2>
+        <a class="primary-action" href="https://github.com/nco-design/spruce-theme-builder">Download Spruce Theme Builder</a>
+        <p><code>spruce-theme-builder</code> is a Node.js tool for designers who want to work directly with theme assets, palettes and front-end options.</p>
+      </section>
+
+      <section class="other-tools" aria-labelledby="other-tools-title">
+        <h2 id="other-tools-title">Other tools</h2>
+
+        <article class="other-tool">
+          <h3><a href="palette-generator/index.html">Palette Generator</a></h3>
+          <p>Create your own palettes and use them for different projects.</p>
+          <div class="preview-carousel" aria-label="Palette preview examples">
+            <img src="shared/assets/preview-autumn-night.png" width="360" height="270" alt="Autumn Night palette preview">
+            <img src="shared/assets/preview-snowy-peak.png" width="360" height="270" alt="Snowy Peak palette preview">
+            <img src="shared/assets/preview-emerald-green.png" width="360" height="270" alt="Emerald Green palette preview">
+            <img src="shared/assets/preview-blue-pearl.png" width="360" height="270" alt="Blue Pearl palette preview">
+            <img src="shared/assets/preview-pink-pearl.png" width="360" height="270" alt="Pink Pearl palette preview">
+            <img src="shared/assets/preview-ruby-red.png" width="360" height="270" alt="Ruby Red palette preview">
+          </div>
+        </article>
+
+        <article class="other-tool">
+          <h3><a href="font-patcher/index.html">Font Patcher</a></h3>
+          <p>Pick a font of your choosing; the patcher adds the symbols needed for the SpruceOS UI.</p>
+        </article>
+      </section>
     </main>
 
     <footer class="tool-footer">
