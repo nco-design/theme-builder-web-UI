@@ -30,29 +30,25 @@
       </p>
 
       <form class="project-form">
-        <section class="form-section" aria-labelledby="project-details-title">
-          <h2 id="project-details-title">Project details</h2>
+        <section class="form-section" aria-labelledby="background-title">
+          <h2 id="background-title">Choose a background image <span class="optional-label">(optional)</span></h2>
 
-          <div class="form-fields">
-            <label>
-              <span>Theme name</span>
-              <input name="theme-name" type="text" required>
-            </label>
-
-            <label>
-              <span>Author</span>
-              <input name="author" type="text" required>
-            </label>
-
-            <label class="full-width-field">
-              <span>Description</span>
-              <textarea name="description" rows="4" required></textarea>
-            </label>
-          </div>
+          <label class="file-field">
+            <span>Background image</span>
+            <input
+              type="file"
+              accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+              data-background-file
+            >
+          </label>
+          <p class="field-help">PNG or JPEG, maximum 10 MB and at least 640 × 480 px. Large images will trigger a warning.</p>
+          <p class="import-status" data-background-status aria-live="polite">
+            The default background will be used.
+          </p>
         </section>
 
         <section class="form-section" aria-labelledby="palettes-title">
-          <h2 id="palettes-title">Palettes</h2>
+          <h2 id="palettes-title">Choose a palette</h2>
           <p>Import one or several palettes created with the <a href="../palette-generator/index.html">Palette Generator</a>.</p>
 
           <label class="file-field">
@@ -71,7 +67,7 @@
 
         <section class="form-section" aria-labelledby="assets-title">
           <h2 id="assets-title">Assets</h2>
-          <p>Add an optional font, background image and navigation icons.</p>
+          <p>Add an optional font and navigation icons.</p>
 
           <div class="asset-fields">
             <label class="file-field">
@@ -93,19 +89,6 @@
             </details>
             <p class="import-status" data-font-status aria-live="polite">
               The default font will be used.
-            </p>
-
-            <label class="file-field">
-              <span>Background image</span>
-              <input
-                type="file"
-                accept=".png,.jpg,.jpeg,image/png,image/jpeg"
-                data-background-file
-              >
-            </label>
-            <p class="field-help">Optional. PNG or JPEG, maximum 10 MB and at least 640 × 480 px. Large images will trigger a warning.</p>
-            <p class="import-status" data-background-status aria-live="polite">
-              The default background will be used.
             </p>
 
             <div class="navigation-icons-field">
@@ -191,8 +174,26 @@
           
         </section>
 
-        <section class="form-section" aria-labelledby="generate-title">
-          <h2 id="generate-title">Generate</h2>
+        <section class="form-section" aria-labelledby="project-details-title">
+          <h2 id="project-details-title">Name your project</h2>
+
+          <div class="form-fields">
+            <label>
+              <span>Theme name</span>
+              <input name="theme-name" type="text" required>
+            </label>
+
+            <label>
+              <span>Author</span>
+              <input name="author" type="text" required>
+            </label>
+
+            <label class="full-width-field">
+              <span>Description</span>
+              <textarea name="description" rows="4" required></textarea>
+            </label>
+          </div>
+
           <p>Review your options and download the completed project folder.</p>
           <button type="submit" data-generate-project>Download project</button>
           <p class="generation-status" data-generation-status aria-live="polite"></p>
