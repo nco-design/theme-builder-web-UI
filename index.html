@@ -6,6 +6,7 @@
     <title>Spruce Theme Builder Web Tools</title>
     <link rel="stylesheet" href="shared/styles.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="shared/carousel.js" defer></script>
     <script src="shared/version.js" defer></script>
   </head>
   <body>
@@ -39,13 +40,19 @@
         <article class="other-tool">
           <h3><a href="palette-generator/index.html">Palette Generator</a></h3>
           <p>Create your own palettes and use them for different projects.</p>
-          <div class="preview-carousel" aria-label="Palette preview examples">
-            <img src="shared/assets/preview-autumn-night.png" width="360" height="270" alt="Autumn Night palette preview">
-            <img src="shared/assets/preview-snowy-peak.png" width="360" height="270" alt="Snowy Peak palette preview">
-            <img src="shared/assets/preview-emerald-green.png" width="360" height="270" alt="Emerald Green palette preview">
-            <img src="shared/assets/preview-blue-pearl.png" width="360" height="270" alt="Blue Pearl palette preview">
-            <img src="shared/assets/preview-pink-pearl.png" width="360" height="270" alt="Pink Pearl palette preview">
-            <img src="shared/assets/preview-ruby-red.png" width="360" height="270" alt="Ruby Red palette preview">
+          <div class="preview-carousel" data-carousel aria-label="Palette preview examples">
+            <button class="carousel-control" type="button" data-carousel-previous aria-label="Show previous palette previews">←</button>
+            <div class="carousel-viewport" data-carousel-viewport>
+              <div class="carousel-track">
+                <img src="shared/assets/preview-autumn-night.png" width="360" height="270" alt="Autumn Night palette preview">
+                <img src="shared/assets/preview-snowy-peak.png" width="360" height="270" alt="Snowy Peak palette preview">
+                <img src="shared/assets/preview-emerald-green.png" width="360" height="270" alt="Emerald Green palette preview">
+                <img src="shared/assets/preview-ruby-red.png" width="360" height="270" alt="Ruby Red palette preview">
+                <img src="shared/assets/preview-blue-pearl.png" width="360" height="270" alt="Blue Pearl palette preview">
+                <img src="shared/assets/preview-pink-pearl.png" width="360" height="270" alt="Pink Pearl palette preview">
+              </div>
+            </div>
+            <button class="carousel-control" type="button" data-carousel-next aria-label="Show next palette previews">→</button>
           </div>
         </article>
 
