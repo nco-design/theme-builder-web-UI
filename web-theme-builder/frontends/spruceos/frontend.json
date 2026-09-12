@@ -18,20 +18,5 @@
       "name": "nunwen.ttf",
       "target": "/"
     }
-  ],
-  "options": {
-    "720p": {
-      "label": "Include optional 720p assets",
-      "theme-config": "theme-720.json",
-      "icon-pack-config": "icon-pack-720.json",
-      "static-files": [
-        {
-          "id": "720p",
-          "type": "config-file",
-          "name": "config_1280x720.json",
-          "target": "/"
-        }
-      ]
-    }
-  }
+  ]
 }
