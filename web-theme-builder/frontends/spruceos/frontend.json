@@ -1,6 +1,5 @@
 {
   "theme-config": "theme.json",
-  "icon-pack-config": "icon-pack.json",
   "static-files": [
     {
       "type": "folder",
