@@ -30,6 +30,13 @@
     }
   }
 
+  function validateTarget(value, label) {
+    if (typeof value !== "string" || value.includes("\\")
+      || value.replace(/^\/+|\/+$/g, "").split("/").includes("..")) {
+      throw new Error(`${label} must be a safe relative target path.`);
+    }
+  }
+
   async function fetchJson(path, label) {
     const response = await fetch(path);
     if (!response.ok) throw new Error(`Unable to load ${label}.`);
@@ -50,6 +57,16 @@
         throw new Error(`${label} uses an unsupported static file type.`);
       }
       assertRelativeFileName(item.name, `${label} static file name`);
+      validateTarget(item.target, `${label} static file target`);
+
+      if (item.type === "folder") {
+        if (!Array.isArray(item.files) || item.files.length === 0) {
+          throw new Error(`${label} folder entries need a non-empty files list for browser builds.`);
+        }
+        for (const path of item.files) {
+          assertRelativeFileName(path, `${label} folder file`);
+        }
+      }
 
       if (item.type === "config-file") {
         if (typeof item.id !== "string" || !item.id.trim()) {

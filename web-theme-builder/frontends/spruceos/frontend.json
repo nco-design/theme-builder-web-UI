@@ -4,7 +4,12 @@
     {
       "type": "folder",
       "name": "sound",
-      "target": "/"
+      "target": "/",
+      "files": [
+        "bgm.mp3",
+        "change.mp3",
+        "change.wav"
+      ]
     },
     {
       "id": "base",

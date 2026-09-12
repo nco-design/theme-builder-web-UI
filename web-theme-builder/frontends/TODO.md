@@ -37,10 +37,10 @@ files to a server.
 
 ## 5. Build static files and configuration
 
-- [ ] Copy placeholder static files, then apply same-name project overrides.
-- [ ] Inject palette bindings into each generated config file.
-- [ ] Apply `config-overrides` by config-file ID.
-- [ ] Add generated metadata to config files.
+- [x] Copy placeholder static files, then apply same-name project overrides.
+- [x] Inject palette bindings into each generated config file.
+- [x] Apply `config-overrides` by config-file ID.
+- [x] Add generated metadata to config files.
 
 ## 6. Render theme assets in the browser
 
