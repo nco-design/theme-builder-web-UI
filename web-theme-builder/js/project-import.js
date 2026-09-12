@@ -17,6 +17,9 @@
 
   function resetProject() {
     app.project = null;
+    app.selectedPalette = null;
+    app.selectedFrontend = null;
+    app.resetBuildOptions?.();
     summary.hidden = true;
     projectName.textContent = "";
     paletteCount.textContent = "";
@@ -84,8 +87,9 @@
     if (typeof config["theme-name"] !== "string" || !config["theme-name"].trim()) {
       throw new Error("project-config.json must define a non-empty theme-name.");
     }
-    if (!config["frontend-configs"]?.spruceos) {
-      throw new Error("This project does not contain a supported SpruceOS configuration.");
+    if (!config["frontend-configs"] || typeof config["frontend-configs"] !== "object"
+      || Array.isArray(config["frontend-configs"]) || Object.keys(config["frontend-configs"]).length === 0) {
+      throw new Error("project-config.json must contain at least one frontend configuration.");
     }
     if (Object.keys(sourcePalette).length === 0) {
       throw new Error("source-palette.json must not be empty.");
@@ -124,6 +128,8 @@
     try {
       const archive = await app.readZip(file);
       app.project = await validateProject(archive);
+      await app.frontendsReady;
+      app.populateBuildOptions(app.project);
       projectName.textContent = app.project.config["theme-name"];
       paletteCount.textContent = String(app.project.palettes.length);
       assetCount.textContent = String(app.project.assetPaths.length);

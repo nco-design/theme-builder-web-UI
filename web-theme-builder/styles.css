@@ -122,6 +122,20 @@ select:disabled {
   color: #ff8f8f;
 }
 
+.build-options-status {
+  margin: 20px 0 0;
+  color: #c8c8c8;
+  line-height: 1.45;
+}
+
+.build-options-status[data-state="success"] {
+  color: #8fdd9a;
+}
+
+.build-options-status[data-state="error"] {
+  color: #ff8f8f;
+}
+
 .project-summary {
   display: flex;
   flex-wrap: wrap;
