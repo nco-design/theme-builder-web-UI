@@ -39,23 +39,6 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     return response.json();
   }
 
-  function replaceFontReferences(value, fontName) {
-    if (Array.isArray(value)) {
-      return value.map((item) => replaceFontReferences(item, fontName));
-    }
-
-    if (value && typeof value === "object") {
-      return Object.fromEntries(Object.entries(value).map(([key, item]) => [
-        key,
-        key === "font" && item === "nunwen.ttf"
-          ? fontName
-          : replaceFontReferences(item, fontName)
-      ]));
-    }
-
-    return value;
-  }
-
   function downloadZip(blob, fileName) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -112,7 +95,6 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
       const skippedPaths = new Set([
         "project-config.json",
-        "assets/config.json",
         "assets/preview.svg"
       ]);
       if (app.background) skippedPaths.add("assets/backgrounds/main-background.svg");
@@ -167,14 +149,9 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
       zip.addFile(`${root}project-config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
 
-      let assetsConfig = await fetchJson("assets/config.json");
-
       if (app.font) {
-        assetsConfig = replaceFontReferences(assetsConfig, app.font.name);
-        zip.addFile(`${root}assets/${app.font.name}`, new Uint8Array(await app.font.arrayBuffer()));
+        zip.addFile(`${root}assets/nunwen.ttf`, new Uint8Array(await app.font.arrayBuffer()));
       }
-
-      zip.addFile(`${root}assets/config.json`, `${JSON.stringify(assetsConfig, null, 2)}\n`);
 
       if (app.background) {
         zip.addFile(`${root}assets/backgrounds/main-background.svg`, app.background.svg);
