@@ -1,0 +1,128 @@
+.builder-page {
+  max-width: 960px;
+  padding-bottom: 48px;
+}
+
+.builder-page h1 {
+  margin-bottom: 8px;
+}
+
+.page-introduction {
+  max-width: 70ch;
+  margin: 0 0 32px;
+  color: #d0d0d0;
+  line-height: 1.55;
+}
+
+.build-form {
+  display: grid;
+  gap: 24px;
+}
+
+.form-section {
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid #5c5c5c;
+  border-radius: 12px;
+  background: #303030;
+}
+
+.section-heading {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.section-heading h2,
+.section-heading p {
+  margin: 0;
+}
+
+.section-heading p {
+  margin-top: 6px;
+  color: #d0d0d0;
+  line-height: 1.45;
+}
+
+.step-number {
+  display: grid;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: #1f5fa8;
+  font-weight: 700;
+}
+
+.file-field,
+.select-fields label {
+  display: grid;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.select-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+input[type="file"],
+select,
+button {
+  min-height: 44px;
+  padding: 10px 12px;
+  color: #f5f5f5;
+  border: 1px solid #707070;
+  border-radius: 6px;
+  background: #404040;
+  font: inherit;
+}
+
+button {
+  border-color: #8ab4f8;
+  background: #1f5fa8;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled,
+select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.field-help,
+.status-message,
+.scope-note {
+  color: #c8c8c8;
+  line-height: 1.45;
+}
+
+.field-help {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.status-message {
+  margin-bottom: 0;
+}
+
+.scope-note {
+  margin: 24px 0 0;
+  padding: 14px 16px;
+  border-left: 4px solid #8ab4f8;
+  background: #262626;
+}
+
+.generate-section button {
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .select-fields {
+    grid-template-columns: 1fr;
+  }
+}

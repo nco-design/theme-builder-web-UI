@@ -16,5 +16,11 @@ window.toolCatalog = [
     name: "Font Patcher",
     description: "Add the Unicode glyphs required by the SpruceOS interface to your font.",
     path: "font-patcher/"
+  },
+  {
+    id: "web-theme-builder",
+    name: "Web Theme Builder",
+    description: "Build a SpruceOS theme from a project ZIP directly in your browser.",
+    path: "web-theme-builder/"
   }
 ];
