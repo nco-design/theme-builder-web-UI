@@ -110,6 +110,46 @@ select:disabled {
   margin-bottom: 0;
 }
 
+.status-message[data-state="loading"] {
+  color: #f5d57a;
+}
+
+.status-message[data-state="success"] {
+  color: #8fdd9a;
+}
+
+.status-message[data-state="error"] {
+  color: #ff8f8f;
+}
+
+.project-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0 0;
+}
+
+.project-summary[hidden] {
+  display: none;
+}
+
+.project-summary div {
+  min-width: 130px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: #262626;
+}
+
+.project-summary dt {
+  color: #b8b8b8;
+  font-size: 13px;
+}
+
+.project-summary dd {
+  margin: 4px 0 0;
+  font-weight: 700;
+}
+
 .scope-note {
   margin: 24px 0 0;
   padding: 14px 16px;

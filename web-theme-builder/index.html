@@ -6,6 +6,8 @@
     <title>Web Theme Builder</title>
     <link rel="stylesheet" href="../shared/styles.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="js/zip-reader.js" defer></script>
+    <script src="js/project-import.js" defer></script>
     <script src="../shared/version.js" defer></script>
   </head>
   <body data-tool-id="web-theme-builder">
@@ -39,7 +41,21 @@
             <input type="file" accept=".zip,application/zip" data-project-file>
           </label>
           <p class="field-help">The project is processed locally in your browser.</p>
-          <p class="status-message" aria-live="polite">No project imported.</p>
+          <p class="status-message" data-project-status aria-live="polite">No project imported.</p>
+          <dl class="project-summary" data-project-summary hidden>
+            <div>
+              <dt>Project</dt>
+              <dd data-project-name></dd>
+            </div>
+            <div>
+              <dt>Palettes</dt>
+              <dd data-palette-count></dd>
+            </div>
+            <div>
+              <dt>Assets</dt>
+              <dd data-asset-count></dd>
+            </div>
+          </dl>
         </section>
 
         <section class="form-section" aria-labelledby="options-title">
