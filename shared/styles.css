@@ -24,6 +24,44 @@ a {
   color: #8ab4f8;
 }
 
+.site-header {
+  color: #fff;
+  background: #000;
+}
+
+.site-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 24px;
+}
+
+.site-header a {
+  color: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-header .github-link {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+}
+
+.github-link img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .site-header-content {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
 .tool-footer {
   width: 100%;
   margin-top: 40px;
