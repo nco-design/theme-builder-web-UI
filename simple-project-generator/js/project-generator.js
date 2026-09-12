@@ -3,6 +3,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
   const form = document.querySelector(".project-form");
   const generateButton = document.querySelector("[data-generate-project]");
   const status = document.querySelector("[data-generation-status]");
+  const buildProjectLink = document.querySelector("[data-build-project]");
   const templateRoot = "assets/example-theme";
   const systemSelectViewTypes = new Set(["GRID", "CAROUSEL", "TEXT_AND_IMAGE"]);
 
@@ -93,6 +94,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     }
 
     generateButton.disabled = true;
+    buildProjectLink.hidden = true;
     showStatus("Preparing project files…");
 
     try {
@@ -193,6 +195,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
       downloadZip(zip.build(), `${themeName}.zip`);
       showStatus(`${themeName}.zip is ready.`, "success");
+      buildProjectLink.hidden = false;
     } catch (error) {
       console.error(error);
       showStatus(error.message, "error");
