@@ -12,11 +12,14 @@ These tools are designed to be used with
 
 - [**Palette Generator**](https://nco-design.github.io/theme-builder-web-UI/palette-generator/) : Create, preview and download ready-to-use color palettes for Spruce Theme Builder.
 
-- [**Font Patcher**](https://nco-design.github.io/theme-builder-web-UI/font-patcher/) : Add the Unicode glyphs required by the SpruceOS interface to your font.
-
 - [**Simple Project Generator**](https://nco-design.github.io/theme-builder-web-UI/simple-project-generator) : Create and download a ready-to-edit Spruce Theme Builder project.
+
   > [!NOTE]
   > Some features are still work in progress
+
+- [**Web Theme Builder**](https://nco-design.github.io/theme-builder-web-UI/web-theme-builder/) : You can now build a working theme for SpruceOS online, without downloading any software.
+
+- [**Font Patcher**](https://nco-design.github.io/theme-builder-web-UI/font-patcher/) : Add the Unicode glyphs required by the SpruceOS interface to your font.
 
 Copyright © 2026 nco-design. This project is licensed under the
 [GNU General Public License v3.0 or later](LICENSE).
