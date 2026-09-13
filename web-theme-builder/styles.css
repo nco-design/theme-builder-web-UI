@@ -96,7 +96,8 @@ select:disabled {
 
 .field-help,
 .status-message,
-.scope-note {
+.scope-note,
+.installation-note {
   color: #c8c8c8;
   line-height: 1.45;
 }
@@ -173,6 +174,13 @@ select:disabled {
 
 .generate-section button {
   width: 100%;
+}
+
+.installation-note {
+  margin: 16px 0 0;
+  padding: 12px 14px;
+  border-left: 4px solid #5c5c5c;
+  background: #262626;
 }
 
 @media (max-width: 640px) {

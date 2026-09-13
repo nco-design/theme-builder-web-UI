@@ -1,6 +1,7 @@
 window.PaletteGenerator = window.PaletteGenerator || {};
 
 window.PaletteGenerator.initializePreviewModifiers = function initializePreviewModifiers() {
+  const app = window.PaletteGenerator;
   const previews = document.querySelector(".previews-grid");
   const backgroundImageInput = document.querySelector("[data-background-image]");
   const removeBackgroundButton = document.querySelector("[data-remove-background]");
@@ -26,6 +27,7 @@ window.PaletteGenerator.initializePreviewModifiers = function initializePreviewM
     }
 
     backgroundImageInput.value = "";
+    app.referenceBackground = null;
     removeBackgroundButton.disabled = true;
     document.dispatchEvent(new CustomEvent("palette-background-image-change", {
       detail: { file: null }
@@ -45,6 +47,7 @@ window.PaletteGenerator.initializePreviewModifiers = function initializePreviewM
     if (backgroundImageUrl) URL.revokeObjectURL(backgroundImageUrl);
 
     backgroundImageUrl = URL.createObjectURL(image);
+    app.referenceBackground = image;
     document.querySelectorAll(".theme-preview").forEach((preview) => {
       preview.style.backgroundImage = `url("${backgroundImageUrl}")`;
     });

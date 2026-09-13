@@ -50,6 +50,23 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
+  buildProjectLink.addEventListener("click", async (event) => {
+    if (!app.generatedProject) return;
+
+    event.preventDefault();
+    buildProjectLink.setAttribute("aria-busy", "true");
+    buildProjectLink.textContent = "Opening Theme Builder…";
+    try {
+      await window.ThemeBuilderWorkflow.handOff("project-to-theme", app.generatedProject);
+      window.location.assign(buildProjectLink.href);
+    } catch (error) {
+      console.error(error);
+      buildProjectLink.removeAttribute("aria-busy");
+      buildProjectLink.textContent = "Build this project";
+      showStatus("The project ZIP was downloaded, but could not be passed to Theme Builder automatically.", "error");
+    }
+  });
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -78,6 +95,9 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
     generateButton.disabled = true;
     buildProjectLink.hidden = true;
+    buildProjectLink.removeAttribute("aria-busy");
+    buildProjectLink.textContent = "Build this project";
+    app.generatedProject = null;
     showStatus("Preparing project files…");
 
     try {
@@ -170,7 +190,10 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
       });
       zip.addFile(`${root}assets/preview.svg`, previewSvg);
 
-      downloadZip(zip.build(), `${themeName}.zip`);
+      const projectZip = zip.build();
+      const projectFileName = `${themeName}.zip`;
+      downloadZip(projectZip, projectFileName);
+      app.generatedProject = { fileName: projectFileName, projectZip };
       showStatus(`${themeName}.zip is ready.`, "success");
       buildProjectLink.hidden = false;
     } catch (error) {

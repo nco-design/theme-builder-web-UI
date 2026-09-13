@@ -110,16 +110,15 @@
     return { archive, assetPaths, config, palettes, root, sourcePalette };
   }
 
-  fileInput.addEventListener("change", async () => {
+  async function importProjectFile(file, { receivedFromWorkflow = false } = {}) {
     resetProject();
-    const file = fileInput.files[0];
     if (!file) {
       setStatus("No project imported.");
-      return;
+      return false;
     }
     if (!file.name.toLowerCase().endsWith(".zip")) {
       setStatus("Choose a ZIP file exported by Spruce Theme Builder.", "error");
-      return;
+      return false;
     }
 
     fileInput.disabled = true;
@@ -134,13 +133,45 @@
       paletteCount.textContent = String(app.project.palettes.length);
       assetCount.textContent = String(app.project.assetPaths.length);
       summary.hidden = false;
-      setStatus("Project imported successfully.", "success");
+      setStatus(
+        receivedFromWorkflow ? "Project received from Simple Project Generator." : "Project imported successfully.",
+        "success"
+      );
+      return true;
     } catch (error) {
       console.error(error);
       resetProject();
       setStatus(error.message || "The project could not be imported.", "error");
+      return false;
     } finally {
       fileInput.disabled = false;
     }
+  }
+
+  app.importProjectFile = importProjectFile;
+
+  fileInput.addEventListener("change", async () => {
+    await importProjectFile(fileInput.files[0]);
   });
+
+  async function receiveProjectHandoff() {
+    try {
+      const handoff = await window.ThemeBuilderWorkflow.receive("project-to-theme");
+      if (!(handoff?.projectZip instanceof Blob)) return;
+
+      const file = handoff.projectZip instanceof File
+        ? handoff.projectZip
+        : new File(
+          [handoff.projectZip],
+          handoff.fileName || "project.zip",
+          { type: "application/zip" }
+        );
+      await importProjectFile(file, { receivedFromWorkflow: true });
+    } catch (error) {
+      console.error(error);
+      setStatus("The project could not be received automatically. Import its ZIP file instead.", "error");
+    }
+  }
+
+  void receiveProjectHandoff();
 }());

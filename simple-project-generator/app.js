@@ -6,3 +6,4 @@ simpleProjectGenerator.initializeBackgroundImport();
 simpleProjectGenerator.initializeIconImport();
 simpleProjectGenerator.initializeLayoutOptions();
 simpleProjectGenerator.initializeProjectGenerator();
+simpleProjectGenerator.initializeWorkflowHandoff();

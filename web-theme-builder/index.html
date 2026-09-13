@@ -6,6 +6,7 @@
     <title>Web Theme Builder</title>
     <link rel="stylesheet" href="../shared/styles.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="../shared/workflow-transfer.js" defer></script>
     <script src="js/zip-reader.js" defer></script>
     <script src="js/zip-writer.js" defer></script>
     <script src="js/frontend-loader.js" defer></script>
@@ -95,8 +96,9 @@
           </p>
 
           <p class="scope-note">
-            This first version builds the base frontend profile only. Build
-            options such as <code>--720p</code> and icon packs are not included.
+            This browser builder supports the base frontend profile only. Build
+            options such as <code>--720p</code>, optional profiles and icon-pack
+            generation remain available only in the Node.js builder.
           </p>
         </section>
 
@@ -112,6 +114,10 @@
           <button type="submit" disabled data-generate-button>Generate theme</button>
           <p class="status-message" data-generation-status aria-live="polite">
             Import a valid project to continue.
+          </p>
+          <p class="installation-note">
+            Installation: extract the generated theme folder into <code>/Themes</code>
+            on your SpruceOS SD card, then select it from the console theme settings.
           </p>
         </section>
       </form>
