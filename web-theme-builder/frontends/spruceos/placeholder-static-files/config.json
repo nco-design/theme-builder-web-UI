@@ -61,5 +61,10 @@
     "carouselSystemSelectShrinkFurtherAway": false,
     "carouselSystemSelectPrimaryImgWidth": 20,
     "carouselSystemXPad": 13,
-    "singleRowGridTextYOffset": 13
+    "singleRowGridTextYOffset": 13,
+    "displayBatteryIcon": true,
+    "displayBatteryPercent": true,
+    "mainMenuShowTextGridMode": false,
+    "systemSelectionSetTopBarText": false,
+    "systemSelectionSetBottomBarText": false
 }
