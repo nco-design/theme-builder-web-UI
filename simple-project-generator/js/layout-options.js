@@ -135,9 +135,10 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
     const bindings = themeConfig["frontend-configs"]?.spruceos?.["palette-bindings"];
     if (!bindings) throw new Error("Unable to customize the footer palette bindings.");
 
-    const textColor = showFooter ? "bg-color" : "primary-color";
+    const textColor = showFooter ? "bg-color" : "secondary-color";
     bindings["hint.color"] = textColor;
     bindings["currentpage.color"] = textColor;
+    bindings["total.color"] = textColor;
   };
 
   const radiusInput = document.querySelector("[data-button-radius]");
