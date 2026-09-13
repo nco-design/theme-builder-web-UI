@@ -556,6 +556,28 @@
   cursor: pointer;
 }
 
+.create-project-action {
+  width: min(100%, 360px);
+  margin-top: 16px;
+  padding: 10px 16px;
+  color: #ffffff;
+  border: 1px solid #8ab4f8;
+  border-radius: 4px;
+  background: #1f5fa8;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.create-project-action:hover,
+.create-project-action:focus-visible {
+  background: #2874c8;
+}
+
+.create-project-action[hidden] {
+  display: none;
+}
+
 @media (max-width: 560px) {
   .preview-menu {
     padding: 16px 0;
