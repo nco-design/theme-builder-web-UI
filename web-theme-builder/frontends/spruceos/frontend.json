@@ -1,0 +1,26 @@
+{
+  "theme-config": "theme.json",
+  "static-files": [
+    {
+      "type": "folder",
+      "name": "sound",
+      "target": "/",
+      "files": [
+        "bgm.mp3",
+        "change.mp3",
+        "change.wav"
+      ]
+    },
+    {
+      "id": "base",
+      "type": "config-file",
+      "name": "config.json",
+      "target": "/"
+    },
+    {
+      "type": "font",
+      "name": "nunwen.ttf",
+      "target": "/"
+    }
+  ]
+}

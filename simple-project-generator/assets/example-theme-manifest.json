@@ -1,6 +1,5 @@
 [
   "assets/LICENSE",
-  "assets/README.md",
   "assets/backgrounds/background-flat.svg",
   "assets/backgrounds/bg-empty.svg",
   "assets/backgrounds/bg-footer.svg",
@@ -12,7 +11,6 @@
   "assets/buttons/keyboard-key-selected.svg",
   "assets/buttons/list-selected.svg",
   "assets/buttons/text-input.svg",
-  "assets/config.json",
   "assets/icons/ABC.svg",
   "assets/icons/L2.svg",
   "assets/icons/OK.svg",

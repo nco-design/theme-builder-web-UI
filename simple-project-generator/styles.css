@@ -18,6 +18,27 @@
   margin-bottom: 0;
 }
 
+.build-project-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 14px;
+  color: #ffffff;
+  border: 1px solid #8ab4f8;
+  border-radius: 4px;
+  background: #1f5fa8;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.build-project-link:hover,
+.build-project-link:focus-visible {
+  background: #2874c8;
+}
+
+.build-project-link[hidden] {
+  display: none;
+}
+
 .form-fields {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

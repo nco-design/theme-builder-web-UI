@@ -72,13 +72,11 @@ window.SimpleProjectGenerator.initializeBackgroundImport = function initializeBa
     return new XMLSerializer().serializeToString(documentNode);
   }
 
-  fileInput.addEventListener("change", async () => {
-    const [file] = fileInput.files;
-
+  async function importBackgroundFile(file) {
     if (!file) {
       app.background = null;
       showStatus("The default background will be used.");
-      return;
+      return false;
     }
 
     const extensionIsValid = /\.(png|jpe?g)$/i.test(file.name);
@@ -87,14 +85,14 @@ window.SimpleProjectGenerator.initializeBackgroundImport = function initializeBa
       app.background = null;
       fileInput.value = "";
       showStatus("Only PNG, JPG and JPEG images are accepted.", "error");
-      return;
+      return false;
     }
 
     if (file.size > maximumSize) {
       app.background = null;
       fileInput.value = "";
       showStatus("The background image must not exceed 10 MB.", "error");
-      return;
+      return false;
     }
 
     try {
@@ -119,10 +117,19 @@ window.SimpleProjectGenerator.initializeBackgroundImport = function initializeBa
       } else {
         showStatus(`${file.name} imported — ${width} × ${height} px`, "success");
       }
+      return true;
     } catch (error) {
       app.background = null;
       fileInput.value = "";
       showStatus(error.message, "error");
+      return false;
     }
+  }
+
+  app.importBackgroundFile = importBackgroundFile;
+
+  fileInput.addEventListener("change", async () => {
+    const [file] = fileInput.files;
+    await importBackgroundFile(file);
   });
 };

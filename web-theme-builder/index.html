@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Theme Builder</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="../shared/workflow-transfer.js" defer></script>
+    <script src="js/zip-reader.js" defer></script>
+    <script src="js/zip-writer.js" defer></script>
+    <script src="js/frontend-loader.js" defer></script>
+    <script src="js/project-import.js" defer></script>
+    <script src="js/static-config-builder.js" defer></script>
+    <script src="js/svg-tools.js" defer></script>
+    <script src="js/button-transformer.js" defer></script>
+    <script src="js/asset-renderer.js" defer></script>
+    <script src="js/theme-generator.js" defer></script>
+    <script src="../shared/version.js" defer></script>
+  </head>
+  <body data-tool-id="web-theme-builder">
+    <header class="site-header">
+      <div class="site-header-content">
+        <a href="../">Spruce Theme Builder</a>
+        <a class="github-link" href="https://nco-design.github.io/theme-builder-web-UI/" aria-label="GitHub">
+          <img src="../shared/assets/github_icon.svg" alt="">
+        </a>
+      </div>
+    </header>
+
+    <main class="page-shell builder-page">
+      <h1>Web Theme Builder</h1>
+      <p class="page-introduction">
+        Import a spruce-theme-builder project and turn it into an installable theme in a few clicks from your browser.
+      </p>
+
+      <form class="build-form">
+        <section class="form-section" aria-labelledby="project-title">
+          <div class="section-heading">
+            <span class="step-number" aria-hidden="true">1</span>
+            <div>
+              <h2 id="project-title">Import your project</h2>
+              <p>Select a project ZIP exported by the <a href="../simple-project-generator/index.html" target="_blank" rel="noopener noreferrer">Simple Project Generator</a>.</p>
+            </div>
+          </div>
+
+          <label class="file-field">
+            <span>Project ZIP</span>
+            <input type="file" accept=".zip,application/zip" data-project-file>
+          </label>
+          <p class="field-help">The project is processed locally in your browser.</p>
+          <p class="status-message" data-project-status aria-live="polite">No project imported.</p>
+          <dl class="project-summary" data-project-summary hidden>
+            <div>
+              <dt>Project</dt>
+              <dd data-project-name></dd>
+            </div>
+            <div>
+              <dt>Palettes</dt>
+              <dd data-palette-count></dd>
+            </div>
+            <div>
+              <dt>Assets</dt>
+              <dd data-asset-count></dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="form-section" aria-labelledby="options-title">
+          <div class="section-heading">
+            <span class="step-number" aria-hidden="true">2</span>
+            <div>
+              <h2 id="options-title">Choose your build</h2>
+              <p>Select the target frontend and one of the palettes contained in your project.</p>
+            </div>
+          </div>
+
+          <div class="select-fields">
+            <label>
+              <span>Frontend</span>
+              <select name="frontend" data-frontend-select disabled>
+                <option>Loading frontends…</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Palette</span>
+              <select name="palette" data-palette-select disabled>
+                <option>Select a project first</option>
+              </select>
+            </label>
+          </div>
+
+          <p class="build-options-status" data-build-options-status aria-live="polite">
+            Import a project to choose its palette.
+          </p>
+
+          <p class="scope-note">
+            This browser builder supports the base frontend profile only. Build
+            options such as <code>--720p</code>, optional profiles and icon-pack
+            generation remain available only in the Node.js builder.
+          </p>
+        </section>
+
+        <section class="form-section generate-section" aria-labelledby="generate-title">
+          <div class="section-heading">
+            <span class="step-number" aria-hidden="true">3</span>
+            <div>
+              <h2 id="generate-title">Generate your theme</h2>
+              <p>Your generated theme will be downloaded as a ZIP file.</p>
+            </div>
+          </div>
+
+          <button type="submit" disabled data-generate-button>Generate theme</button>
+          <p class="status-message" data-generation-status aria-live="polite">
+            Import a valid project to continue.
+          </p>
+          <p class="installation-note">
+            Installation: extract the generated theme folder into <code>/Themes</code>
+            on your SpruceOS SD card, then select it from the console theme settings.
+          </p>
+        </section>
+      </form>
+    </main>
+
+    <footer class="tool-footer">
+      <div class="tool-footer-content">
+        <a class="tool-footer-item" href="https://github.com/nco-design">Author: Nicolas C</a>
+        <span class="tool-footer-item">Version <span data-project-version></span></span>
+        <a class="tool-footer-item" href="../LICENSE">License</a>
+      </div>
+    </footer>
+  </body>
+</html>

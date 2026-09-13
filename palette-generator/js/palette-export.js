@@ -4,6 +4,9 @@ window.PaletteGenerator.initializePaletteExport = function initializePaletteExpo
   const api = window.PaletteGenerator;
   const generateForm = document.querySelector("[data-generate-form]");
   const paletteNameInput = generateForm.elements.namedItem("palette-name");
+  const createProjectButton = document.querySelector("[data-create-project]");
+  let generatedPalette = null;
+  let generatedBackground = null;
 
   function createPaletteSlug(name) {
     return name
@@ -81,8 +84,34 @@ window.PaletteGenerator.initializePaletteExport = function initializePaletteExpo
       };
 
       downloadJson(`${paletteName}.json`, palette);
+      generatedPalette = palette;
+      generatedBackground = api.referenceBackground || null;
+      createProjectButton.hidden = false;
     } catch (error) {
       console.error(error);
+    }
+  });
+
+  createProjectButton.addEventListener("click", async () => {
+    if (!generatedPalette) return;
+
+    createProjectButton.disabled = true;
+    createProjectButton.textContent = "Opening project creator…";
+    try {
+      const backgroundFile = generatedBackground;
+      await window.ThemeBuilderWorkflow.handOff("palette-to-project", {
+        background: backgroundFile ? {
+          file: backgroundFile,
+          name: backgroundFile.name,
+          type: backgroundFile.type
+        } : null,
+        palette: generatedPalette
+      });
+      window.location.assign("../simple-project-generator/index.html");
+    } catch (error) {
+      console.error(error);
+      createProjectButton.disabled = false;
+      createProjectButton.textContent = "Create a project with this palette";
     }
   });
 };

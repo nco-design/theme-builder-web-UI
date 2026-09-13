@@ -3,6 +3,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
   const form = document.querySelector(".project-form");
   const generateButton = document.querySelector("[data-generate-project]");
   const status = document.querySelector("[data-generation-status]");
+  const buildProjectLink = document.querySelector("[data-build-project]");
   const templateRoot = "assets/example-theme";
   const systemSelectViewTypes = new Set(["GRID", "CAROUSEL", "TEXT_AND_IMAGE"]);
 
@@ -38,23 +39,6 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     return response.json();
   }
 
-  function replaceFontReferences(value, fontName) {
-    if (Array.isArray(value)) {
-      return value.map((item) => replaceFontReferences(item, fontName));
-    }
-
-    if (value && typeof value === "object") {
-      return Object.fromEntries(Object.entries(value).map(([key, item]) => [
-        key,
-        key === "font" && item === "nunwen.ttf"
-          ? fontName
-          : replaceFontReferences(item, fontName)
-      ]));
-    }
-
-    return value;
-  }
-
   function downloadZip(blob, fileName) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -65,6 +49,23 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     link.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
+
+  buildProjectLink.addEventListener("click", async (event) => {
+    if (!app.generatedProject) return;
+
+    event.preventDefault();
+    buildProjectLink.setAttribute("aria-busy", "true");
+    buildProjectLink.textContent = "Opening Theme Builder…";
+    try {
+      await window.ThemeBuilderWorkflow.handOff("project-to-theme", app.generatedProject);
+      window.location.assign(buildProjectLink.href);
+    } catch (error) {
+      console.error(error);
+      buildProjectLink.removeAttribute("aria-busy");
+      buildProjectLink.textContent = "Build this project";
+      showStatus("The project ZIP was downloaded, but could not be passed to Theme Builder automatically.", "error");
+    }
+  });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -93,6 +94,10 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     }
 
     generateButton.disabled = true;
+    buildProjectLink.hidden = true;
+    buildProjectLink.removeAttribute("aria-busy");
+    buildProjectLink.textContent = "Build this project";
+    app.generatedProject = null;
     showStatus("Preparing project files…");
 
     try {
@@ -110,7 +115,6 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
       const skippedPaths = new Set([
         "project-config.json",
-        "assets/config.json",
         "assets/preview.svg"
       ]);
       if (app.background) skippedPaths.add("assets/backgrounds/main-background.svg");
@@ -165,14 +169,9 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
 
       zip.addFile(`${root}project-config.json`, `${JSON.stringify(themeConfig, null, 2)}\n`);
 
-      let assetsConfig = await fetchJson("assets/config.json");
-
       if (app.font) {
-        assetsConfig = replaceFontReferences(assetsConfig, app.font.name);
-        zip.addFile(`${root}assets/${app.font.name}`, new Uint8Array(await app.font.arrayBuffer()));
+        zip.addFile(`${root}assets/nunwen.ttf`, new Uint8Array(await app.font.arrayBuffer()));
       }
-
-      zip.addFile(`${root}assets/config.json`, `${JSON.stringify(assetsConfig, null, 2)}\n`);
 
       if (app.background) {
         zip.addFile(`${root}assets/backgrounds/main-background.svg`, app.background.svg);
@@ -191,8 +190,12 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
       });
       zip.addFile(`${root}assets/preview.svg`, previewSvg);
 
-      downloadZip(zip.build(), `${themeName}.zip`);
+      const projectZip = zip.build();
+      const projectFileName = `${themeName}.zip`;
+      downloadZip(projectZip, projectFileName);
+      app.generatedProject = { fileName: projectFileName, projectZip };
       showStatus(`${themeName}.zip is ready.`, "success");
+      buildProjectLink.hidden = false;
     } catch (error) {
       console.error(error);
       showStatus(error.message, "error");

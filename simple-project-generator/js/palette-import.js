@@ -86,27 +86,34 @@ window.SimpleProjectGenerator.initializePaletteImport = function initializePalet
     return validatePalette(palette);
   }
 
-  fileInput.addEventListener("change", async () => {
+  async function importPaletteFile(file) {
     const paletteNames = new Set(
       app.palettes.map(({ palette }) => palette["palette-name"])
     );
 
-    for (const file of fileInput.files) {
-      try {
-        const palette = await readPaletteFile(file);
-        const paletteName = palette["palette-name"];
+    try {
+      const palette = await readPaletteFile(file);
+      const paletteName = palette["palette-name"];
 
-        if (paletteNames.has(paletteName)) {
-          throw new Error(`Duplicate palette-name: ${paletteName}.`);
-        }
-
-        paletteNames.add(paletteName);
-        const entry = { file, palette };
-        app.palettes.push(entry);
-        addImportedPalette(entry);
-      } catch (error) {
-        addResult(`${file.name} — ${error.message}`, "error");
+      if (paletteNames.has(paletteName)) {
+        throw new Error(`Duplicate palette-name: ${paletteName}.`);
       }
+
+      const entry = { file, palette };
+      app.palettes.push(entry);
+      addImportedPalette(entry);
+      return true;
+    } catch (error) {
+      addResult(`${file.name} — ${error.message}`, "error");
+      return false;
+    }
+  }
+
+  app.importPaletteFile = importPaletteFile;
+
+  fileInput.addEventListener("change", async () => {
+    for (const file of fileInput.files) {
+      await importPaletteFile(file);
     }
 
     fileInput.value = "";
