@@ -148,6 +148,7 @@
       replaceOptions(frontendSelect, [createOption("", "Import a compatible project first")]);
     }
     setStatus("Import a project to choose its palette.");
+    app.updateGenerateButton?.();
   };
 
   app.populateBuildOptions = function populateBuildOptions(project) {
@@ -166,6 +167,7 @@
     paletteSelect.disabled = false;
     app.selectedPalette = project.palettes[0].palette;
     setStatus(`${app.selectedFrontend.label} base profile loaded. Choose a palette to continue.`, "success");
+    app.updateGenerateButton?.();
   };
 
   frontendSelect.addEventListener("change", () => {
@@ -173,12 +175,14 @@
     if (app.selectedFrontend) {
       setStatus(`${app.selectedFrontend.label} base profile loaded.`, "success");
     }
+    app.updateGenerateButton?.();
   });
 
   paletteSelect.addEventListener("change", () => {
     app.selectedPalette = app.project?.palettes.find(({ palette }) => (
       palette["palette-name"] === paletteSelect.value
     ))?.palette || null;
+    app.updateGenerateButton?.();
   });
 
   app.frontendsReady = (async () => {

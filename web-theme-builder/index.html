@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="../shared/styles.css">
     <link rel="stylesheet" href="styles.css">
     <script src="js/zip-reader.js" defer></script>
+    <script src="js/zip-writer.js" defer></script>
     <script src="js/frontend-loader.js" defer></script>
     <script src="js/project-import.js" defer></script>
     <script src="js/static-config-builder.js" defer></script>
     <script src="js/svg-tools.js" defer></script>
     <script src="js/button-transformer.js" defer></script>
     <script src="js/asset-renderer.js" defer></script>
+    <script src="js/theme-generator.js" defer></script>
     <script src="../shared/version.js" defer></script>
   </head>
   <body data-tool-id="web-theme-builder">
@@ -108,7 +110,9 @@
           </div>
 
           <button type="submit" disabled data-generate-button>Generate theme</button>
-          <p class="status-message" aria-live="polite">Import a valid project to continue.</p>
+          <p class="status-message" data-generation-status aria-live="polite">
+            Import a valid project to continue.
+          </p>
         </section>
       </form>
     </main>
