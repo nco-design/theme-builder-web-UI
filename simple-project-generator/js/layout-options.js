@@ -3,6 +3,7 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
   const templateRoot = "assets/example-theme";
   const primaryColorSource = "#e5e5e5";
   const backgroundColorSource = "#0d0d26";
+  const supportedFrontends = ["spruceos", "onionos"];
 
   const buttonPaths = new Set([
     "assets/buttons/btn-selected.svg",
@@ -124,21 +125,37 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
   app.applyHeaderPaletteBindings = function applyHeaderPaletteBindings(themeConfig, showHeader) {
     if (!showHeader) return;
 
-    const bindings = themeConfig["frontend-configs"]?.spruceos?.["palette-bindings"];
-    if (!bindings) throw new Error("Unable to customize the header palette bindings.");
+    const frontendConfigs = themeConfig["frontend-configs"];
+    const configuredFrontends = supportedFrontends.filter((frontendId) => (
+      frontendConfigs?.[frontendId]?.["palette-bindings"]
+    ));
+    if (configuredFrontends.length === 0) {
+      throw new Error("Unable to customize the header palette bindings.");
+    }
 
-    bindings["batteryPercentage.color"] = "bg-color";
-    bindings["title.color"] = "bg-color";
+    for (const frontendId of configuredFrontends) {
+      const bindings = frontendConfigs[frontendId]["palette-bindings"];
+      bindings["batteryPercentage.color"] = "bg-color";
+      bindings["title.color"] = "bg-color";
+    }
   };
 
   app.applyFooterPaletteBindings = function applyFooterPaletteBindings(themeConfig, showFooter) {
-    const bindings = themeConfig["frontend-configs"]?.spruceos?.["palette-bindings"];
-    if (!bindings) throw new Error("Unable to customize the footer palette bindings.");
+    const frontendConfigs = themeConfig["frontend-configs"];
+    const configuredFrontends = supportedFrontends.filter((frontendId) => (
+      frontendConfigs?.[frontendId]?.["palette-bindings"]
+    ));
+    if (configuredFrontends.length === 0) {
+      throw new Error("Unable to customize the footer palette bindings.");
+    }
 
     const textColor = showFooter ? "bg-color" : "secondary-color";
-    bindings["hint.color"] = textColor;
-    bindings["currentpage.color"] = textColor;
-    bindings["total.color"] = textColor;
+    for (const frontendId of configuredFrontends) {
+      const bindings = frontendConfigs[frontendId]["palette-bindings"];
+      bindings["hint.color"] = textColor;
+      bindings["currentpage.color"] = textColor;
+      bindings["total.color"] = textColor;
+    }
   };
 
   const radiusInput = document.querySelector("[data-button-radius]");
