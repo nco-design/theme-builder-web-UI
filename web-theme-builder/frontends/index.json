@@ -3,6 +3,10 @@
     {
       "id": "spruceos",
       "label": "SpruceOS"
+    },
+    {
+      "id": "onionos",
+      "label": "OnionOS"
     }
   ]
 }

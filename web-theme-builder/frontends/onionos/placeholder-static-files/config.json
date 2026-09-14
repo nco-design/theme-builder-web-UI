@@ -1,0 +1,40 @@
+{
+    "name": "",
+    "author": "",
+    "description": "",
+    "batteryPercentage": {
+        "visible": true,
+        "color": "#FFFFFF",
+        "size": 18,
+        "offsetX": 26,
+        "fixed": true
+    },
+    "title": {
+        "font": "nunwen.ttf",
+        "size": 25,
+        "color": "#FFFFFF"
+    },
+    "hint": {
+        "font": "nunwen.ttf",
+        "size": 25,
+        "color": "#FFFFFF"
+    },
+    "currentpage": {
+        "color": "#FFFFFF"
+    },
+    "total": {
+        "color": "#FFFFFF"
+    },
+    "grid": {
+        "font": "nunwen.ttf",
+        "grid1x4": 25,
+        "grid3x4": 18,
+        "color": "#888888",
+        "selectedcolor": "#FFFFFF"
+    },
+    "list": {
+        "font": "nunwen.ttf",
+        "size": 25,
+        "color": "#FFFFFF"
+    }
+}
