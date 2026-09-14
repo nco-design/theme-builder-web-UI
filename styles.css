@@ -44,7 +44,7 @@
 
 .primary-action {
   display: inline-block;
-  margin: 8px 0;
+  margin: 8px 0 40px;
   padding: 12px 18px;
   color: #fff;
   border: 1px solid #8ab4f8;
@@ -61,6 +61,14 @@
 
 .builder-block {
   margin-top: 24px;
+}
+
+.builder-page-content {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.builder-page-content .builder-copy > p {
+  max-width: none;
 }
 
 .other-tools {
