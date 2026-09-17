@@ -40,7 +40,9 @@ window.SimpleProjectGenerator.initializeBackgroundImport = function initializeBa
   }
 
   async function createBackgroundSvg(file, width, height) {
-    const response = await fetch("assets/example-theme/assets/backgrounds/main-background.svg");
+    const response = await app.fetchWithRetry(
+      "assets/example-theme/assets/backgrounds/main-background.svg"
+    );
 
     if (!response.ok) {
       throw new Error("Unable to load the background SVG template.");

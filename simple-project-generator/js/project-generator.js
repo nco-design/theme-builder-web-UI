@@ -28,13 +28,13 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
   }
 
   async function fetchFile(path) {
-    const response = await fetch(assetUrl(path));
+    const response = await app.fetchWithRetry(assetUrl(path));
     if (!response.ok) throw new Error(`Unable to load template file: ${path}`);
     return new Uint8Array(await response.arrayBuffer());
   }
 
   async function fetchJson(path) {
-    const response = await fetch(assetUrl(path));
+    const response = await app.fetchWithRetry(assetUrl(path));
     if (!response.ok) throw new Error(`Unable to load template file: ${path}`);
     return response.json();
   }
@@ -101,7 +101,7 @@ window.SimpleProjectGenerator.initializeProjectGenerator = function initializePr
     showStatus("Preparing project files…");
 
     try {
-      const manifestResponse = await fetch("assets/example-theme-manifest.json");
+      const manifestResponse = await app.fetchWithRetry("assets/example-theme-manifest.json");
       if (!manifestResponse.ok) throw new Error("Unable to load the project manifest.");
       const manifest = await manifestResponse.json();
       const zip = new app.ZipBuilder();

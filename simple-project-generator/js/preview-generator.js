@@ -12,7 +12,9 @@ window.SimpleProjectGenerator.createProjectPreview = async function createProjec
 
   async function fetchSvg(path) {
     const encodedPath = path.split("/").map(encodeURIComponent).join("/");
-    const response = await fetch(`${templateRoot}/${encodedPath}`);
+    const response = await window.SimpleProjectGenerator.fetchWithRetry(
+      `${templateRoot}/${encodedPath}`
+    );
     if (!response.ok) throw new Error(`Unable to load preview asset: ${path}`);
     return response.text();
   }

@@ -43,7 +43,7 @@ window.SimpleProjectGenerator.initializeLayoutOptions = function initializeLayou
   }
 
   async function fetchSvg(path) {
-    const response = await fetch(assetUrl(path));
+    const response = await app.fetchWithRetry(assetUrl(path));
     if (!response.ok) throw new Error(`Unable to load template file: ${path}`);
     return response.text();
   }

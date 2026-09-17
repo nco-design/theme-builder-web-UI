@@ -9,7 +9,7 @@ window.SimpleProjectGenerator.initializeIconImport = function initializeIconImpo
     { id: "apps", label: "Apps" },
     { id: "settings", label: "Settings" }
   ];
-  const sourcePalettePromise = fetch("assets/example-theme/source-palette.json")
+  const sourcePalettePromise = app.fetchWithRetry("assets/example-theme/source-palette.json")
     .then((response) => {
       if (!response.ok) throw new Error("Unable to load source-palette.json.");
       return response.json();
