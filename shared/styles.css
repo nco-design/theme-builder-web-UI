@@ -75,15 +75,28 @@ a {
 }
 
 .tool-footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 8px 24px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 24px;
+}
+
+.tool-footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.tool-footer-heading {
+  margin: 0 0 4px;
+  color: #d0d0d0;
+  font-size: 1em;
+  font-weight: 700;
 }
 
 .tool-footer-item {
@@ -95,4 +108,10 @@ a {
 
 .tool-footer a {
   color: inherit;
+}
+
+@media (max-width: 640px) {
+  .tool-footer-content {
+    grid-template-columns: 1fr;
+  }
 }
