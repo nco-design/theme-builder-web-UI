@@ -6,6 +6,7 @@
   const encoder = new TextEncoder();
   const supportedTypes = new Set(["background", "button"]);
   const supportedFormats = new Set(["png", "svg"]);
+  const supportedFlipAngles = new Set([0, 90, 180, 270]);
 
   function outputPath(asset) {
     const target = asset["target-path"].replaceAll("\\", "/").replace(/^\/+|\/+$/g, "");
@@ -51,6 +52,11 @@
       || asset.opacity < 0 || asset.opacity > 100)) {
       throw new Error(`Opacity for ${asset["icon-name"]} must be between 0 and 100.`);
     }
+    if (asset.flip !== undefined && !supportedFlipAngles.has(asset.flip)) {
+      throw new Error(
+        `Flip for ${asset["icon-name"]} must be one of: 0, 90, 180, 270.`
+      );
+    }
     return true;
   }
 
@@ -81,6 +87,7 @@
     }
     return app.renderSvgToPng({
       fit: asset.type === "background" ? "cover" : "fill",
+      flip: asset.flip ?? 0,
       height: asset.height,
       opacity,
       sourceName: asset.source,

@@ -71,6 +71,7 @@
 
   app.renderSvgToPng = async function renderSvgToPng({
     fit,
+    flip = 0,
     height,
     opacity,
     sourceName,
@@ -120,8 +121,31 @@
         context.drawImage(image, 0, 0, width, height);
       }
 
+      let outputCanvas = canvas;
+      if (flip !== 0) {
+        const rotatedCanvas = document.createElement("canvas");
+        const swapsDimensions = flip === 90 || flip === 270;
+        rotatedCanvas.width = swapsDimensions ? height : width;
+        rotatedCanvas.height = swapsDimensions ? width : height;
+        const rotatedContext = rotatedCanvas.getContext("2d");
+        if (!rotatedContext) throw new Error("Canvas rendering is not available in this browser.");
+
+        if (flip === 90) {
+          rotatedContext.translate(height, 0);
+          rotatedContext.rotate(Math.PI / 2);
+        } else if (flip === 180) {
+          rotatedContext.translate(width, height);
+          rotatedContext.rotate(Math.PI);
+        } else if (flip === 270) {
+          rotatedContext.translate(0, width);
+          rotatedContext.rotate(-Math.PI / 2);
+        }
+        rotatedContext.drawImage(canvas, 0, 0);
+        outputCanvas = rotatedCanvas;
+      }
+
       const pngBlob = await new Promise((resolve, reject) => {
-        canvas.toBlob((output) => {
+        outputCanvas.toBlob((output) => {
           if (output) resolve(output);
           else reject(new Error(`Unable to encode PNG asset: ${sourceName}.`));
         }, "image/png");
